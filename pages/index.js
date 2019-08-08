@@ -4,8 +4,6 @@ import Head from '../components/head'
 import Layout from '../components/Layout';
 
 const Home = () => {
-  const [date, setDate] = useState(null);
-
   return (
     <Layout>
       <Head title="Home" />
