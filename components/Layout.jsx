@@ -58,11 +58,12 @@ const useStyles = makeStyles(theme => ({
 	main: {
 		[theme.breakpoints.up("sm")]: {
 			paddingLeft: theme.spacing(3),
-			paddingRight: theme.spacing(3)
+			paddingRight: theme.spacing(3),
+			paddingTop: theme.spacing(9)
 		},
 		paddingLeft: theme.spacing(2),
 		paddingRight: theme.spacing(2),
-		paddingTop: 80,
+		paddingTop: theme.spacing(7),
 		backgroundColor: theme.palette.secondary,
 		flexGrow: 1
 	},
