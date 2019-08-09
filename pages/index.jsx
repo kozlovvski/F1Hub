@@ -1,11 +1,32 @@
 import Head from '../components/Head'
 import Layout from '../components/Layout';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import DriversChampionshipTable from '../components/DriversChampionshipTable';
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    // padding: theme.spacing(2)
+  }
+}))
 
 const Home = () => {
+  const classes = useStyles();
+  const theme = useTheme();
+
   return (
     <Layout name="Dashboard">
       <Head title="Home" />
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, est inventore! Omnis ullam laborum ipsa, voluptatum voluptatibus iusto cupiditate, quidem harum cum velit eaque molestias accusantium! Numquam, rerum eveniet doloremque est ipsa alias incidunt, aspernatur quia laudantium non, deleniti ex? Autem illum enim odio, cupiditate vel a alias facere! Maxime, deserunt excepturi sequi nostrum rerum veniam quod unde cumque aut aliquam expedita temporibus numquam ipsam voluptates, ducimus labore quos cum molestias odit illo? Quae ullam hic possimus voluptatem labore cumque doloribus, ea rerum nostrum libero officiis ut voluptatum voluptatibus voluptas itaque laudantium quidem vero corporis, reiciendis, doloremque aliquam quibusdam quisquam! Quo voluptas expedita recusandae tenetur at exercitationem natus inventore eius rem vero. Architecto ex provident, fuga sit doloremque veritatis delectus perferendis quis mollitia molestiae! Perspiciatis sint optio quasi adipisci officiis quas repellat sed necessitatibus, aliquam sunt similique beatae praesentium est molestias asperiores, mollitia corporis non omnis vel qui repudiandae ad ea. Corporis repellat numquam et. Vel neque atque reiciendis accusantium perferendis repellendus dolorem ullam ipsam? Rerum voluptatibus vel a quisquam placeat modi nesciunt tempore, reiciendis tempora laudantium iusto saepe et error ea nisi facere neque excepturi perspiciatis eveniet sequi animi adipisci! Eligendi sint reprehenderit pariatur aperiam quo, incidunt adipisci quasi alias ducimus deserunt recusandae qui est consequatur. Quasi, repudiandae error molestias voluptatum reiciendis rerum modi. Vel porro laboriosam, quis itaque similique voluptates fugit placeat inventore at voluptatem molestiae aperiam accusantium nihil reprehenderit libero possimus accusamus. Voluptatibus, enim eaque harum officiis asperiores perspiciatis. In, laboriosam. Ipsam eos optio magni beatae! Ipsum debitis eos vitae quasi adipisci. Blanditiis rerum aliquam ullam. Illum eos molestias ea totam ex culpa est? Illo veritatis, officiis sit consequatur reiciendis porro saepe libero eveniet distinctio sapiente cum nisi ratione laudantium perspiciatis quae et minima ab. Aspernatur delectus esse facilis aut minima recusandae reiciendis nostrum incidunt, eum nisi doloremque dolorum dicta perferendis, temporibus, expedita accusantium unde iste quisquam ullam quasi sed? Placeat alias magnam maiores dignissimos velit. Quos quae reiciendis, nobis quaerat nesciunt magnam iste eligendi enim. Impedit commodi necessitatibus, quasi reiciendis at repellat consequatur nisi ullam, neque a, eligendi perferendis. Ullam odit, ducimus, temporibus perferendis mollitia quia recusandae asperiores quis, necessitatibus nihil et dolorum explicabo alias aut animi atque cupiditate corrupti consectetur esse minus ut iste obcaecati! Placeat eum aperiam, optio tempora consequuntur praesentium facilis ullam impedit nulla hic repellendus fuga quis est id in eligendi dolore. Dicta consectetur consequatur error fuga, sed unde cumque, perferendis nemo soluta maxime quod tenetur illo dolores. Iusto, necessitatibus rerum exercitationem laborum consequuntur, sequi iure mollitia vitae provident magni sapiente molestias dolore voluptate doloribus nostrum nihil voluptatem! Facilis soluta in doloremque voluptatibus quisquam sed tempora recusandae, laudantium libero eius quo esse magni placeat reiciendis officiis. Enim, asperiores? Vel voluptates quos fugit porro, commodi ipsum sapiente ea nam sequi eveniet impedit dignissimos expedita error natus repellat, quo at vero doloribus odio similique harum perspiciatis. Molestiae facilis minus blanditiis minima aspernatur labore, placeat alias, eos est odit quod amet! Tempora quasi aliquam, repudiandae quaerat tenetur omnis laboriosam porro assumenda beatae, perspiciatis, dolores quibusdam.</p>
+      <Grid container spacing={3}>
+        <Grid item md={6} lg={4}>
+          <Paper className={classes.paper}>
+            <DriversChampionshipTable />
+          </Paper>
+        </Grid>
+        <Grid item md={12} lg={8}>
+          <Paper className={classes.paper}>elo2</Paper>
+        </Grid>
+      </Grid>
     </Layout>
   )
 }
