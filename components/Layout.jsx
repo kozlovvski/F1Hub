@@ -12,7 +12,9 @@ import {
 	SwipeableDrawer,
 	Typography,
 	Link as MaterialLink,
-	Tooltip
+	Tooltip,
+	useScrollTrigger,
+	Paper
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
@@ -42,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-    },
+		}
 	},
 	pageTitle: {
 		flexGrow: 1
@@ -60,7 +62,9 @@ const useStyles = makeStyles(theme => ({
 		},
 		paddingLeft: theme.spacing(2),
 		paddingRight: theme.spacing(2),
-		paddingTop: 80
+		paddingTop: 80,
+		backgroundColor: theme.palette.secondary,
+		flexGrow: 1
 	},
 	footer: {
 		marginTop: "auto",
@@ -83,6 +87,17 @@ const Layout = props => {
 
 	const handleDarkTheme = () => {
 		setDarkTheme(!darkTheme);
+	}
+
+	const ElevationScroll = props => {
+		const trigger = useScrollTrigger({
+			disableHysteresis: true,
+			threshold: 0
+		});
+	
+		return React.cloneElement(props.children, {
+			elevation: trigger ? 4 : 0,
+		});
 	}
 
 	return (
@@ -109,7 +124,8 @@ const Layout = props => {
 				</Hidden>
 			</nav>
 			<div className={classes.page}>
-				<AppBar position="fixed" color="default" className={classes.appbar}>
+				<ElevationScroll>
+				<AppBar position="fixed" color="light" className={classes.appbar}>
 					<Toolbar>
 						<Hidden smUp>
 							<IconButton
@@ -146,9 +162,13 @@ const Layout = props => {
 					</Tooltip>
 					</Toolbar>
 				</AppBar>
-				<main className={classes.main}>
+				</ElevationScroll>
+				<Paper component="main" square elevation={0} className={classes.main}>
 					{props.children}
-				</main>
+
+				</Paper>
+				{/* <main className={classes.main}>
+				</main> */}
 				<footer className={classes.footer}>
 					<Typography variant="caption">
 						Coded with ❤️ by <MaterialLink href="https://github.com/kozlovvski" color="primary">@kozlovvski</MaterialLink>
