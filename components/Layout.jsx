@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
 	},
 	appbar: {
-    marginLeft: drawerWidth,
+		marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
 		}
@@ -59,12 +59,14 @@ const useStyles = makeStyles(theme => ({
 		[theme.breakpoints.up("sm")]: {
 			paddingLeft: theme.spacing(3),
 			paddingRight: theme.spacing(3),
-			paddingTop: theme.spacing(9)
+			paddingTop: 64 + theme.spacing(3),
+			paddingBottom: theme.spacing(3),
 		},
 		paddingLeft: theme.spacing(2),
 		paddingRight: theme.spacing(2),
-		paddingTop: theme.spacing(7),
-		backgroundColor: theme.palette.secondary,
+		paddingTop: 56 + theme.spacing(2),
+		paddingBottom: theme.spacing(2),
+		backgroundColor: theme.palette.background.default,
 		flexGrow: 1
 	},
 	footer: {
@@ -126,7 +128,7 @@ const Layout = props => {
 			</nav>
 			<div className={classes.page}>
 				<ElevationScroll>
-				<AppBar position="fixed" color="light" className={classes.appbar}>
+				<AppBar position="fixed" color="default" className={classes.appbar}>
 					<Toolbar>
 						<Hidden smUp>
 							<IconButton
@@ -164,12 +166,9 @@ const Layout = props => {
 					</Toolbar>
 				</AppBar>
 				</ElevationScroll>
-				<Paper component="main" square elevation={0} className={classes.main}>
+				<main className={classes.main}>
 					{props.children}
-
-				</Paper>
-				{/* <main className={classes.main}>
-				</main> */}
+				</main>
 				<footer className={classes.footer}>
 					<Typography variant="caption">
 						Coded with ❤️ by <MaterialLink href="https://github.com/kozlovvski" color="primary">@kozlovvski</MaterialLink>

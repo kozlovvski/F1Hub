@@ -1,8 +1,5 @@
-import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { makeStyles, useTheme, Typography, Grid, Table, TableHead, TableRow, TableCell, TableBody, Toolbar } from "@material-ui/core";
-import { createDeflateRaw } from 'zlib';
+import { makeStyles, useTheme, Typography, Table, TableHead, TableRow, TableCell, TableBody, Toolbar } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   tableName: {
@@ -10,12 +7,13 @@ const useStyles = makeStyles(theme => ({
 		flexShrink: 0,
 		marginRight: theme.spacing(2)
 	},
-	tableContainer: {
-		maxHeight: 400,
-		overflow: "auto"
-	},
 	tableHeader: {
 		padding: theme.spacing(2)
+	},
+	tableHeaderCell: {
+		position: "sticky",
+		top: 0,
+		backgroundColor: theme.palette.background.paper
 	},
 	roundName: {
 		textAlign: "right"
@@ -25,22 +23,6 @@ const useStyles = makeStyles(theme => ({
 const DriversChampionshipTable = props => {
 	const classes = useStyles();
 	const theme = useTheme();
-	
-	const [data, setData] = useState({DriverStandings: [], round: 0});
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const res = await axios(
-				`https://ergast.com/api/f1/${props.year}/driverStandings.json`
-			)
-			const resData = await res.data;
-			const driversStanding = await resData.MRData.StandingsTable.StandingsLists[0];
-			console.log(driversStanding);
-			setData(driversStanding);
-		}
-
-		fetchData();
-	}, [])
 
 	return (
 		<>
@@ -49,21 +31,20 @@ const DriversChampionshipTable = props => {
 						Drivers Championship
 					</Typography>
 					<Typography variant="caption" className={classes.roundName}>
-						{"after round\u00A0" + data.round}
+						{"after round\u00A0" + props.data.round}
 					</Typography>
 			</Toolbar>
-			<div className={classes.tableContainer}>
 			<Table size="small">
 				<TableHead>
 					<TableRow>
-						<TableCell>Pos.</TableCell>
-						<TableCell>Driver</TableCell>
-						<TableCell>Points</TableCell>
-						<TableCell>Wins</TableCell>
+						<TableCell className={classes.tableHeaderCell}>Pos.</TableCell>
+						<TableCell className={classes.tableHeaderCell}>Driver</TableCell>
+						<TableCell className={classes.tableHeaderCell}>Points</TableCell>
+						<TableCell className={classes.tableHeaderCell}>Wins</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{data.DriverStandings.map(row => (
+					{props.data.DriverStandings.map(row => (
 						<TableRow key={row.Driver.driverId}>
 							<TableCell>{row.position}</TableCell>
 							<TableCell>{`${row.Driver.givenName} ${row.Driver.familyName}`}</TableCell>
@@ -73,13 +54,17 @@ const DriversChampionshipTable = props => {
 					))}
 				</TableBody>
 			</Table>
-			</div>
 		</>
 	)
 }
 
 DriversChampionshipTable.propTypes = {
-	year: PropTypes.string
+	year: PropTypes.string,
+	data: PropTypes.shape({
+		DriverStandings: PropTypes.array,
+		round: PropTypes.string,
+		season: PropTypes.string
+	})
 }
 
 DriversChampionshipTable.defaultProps = {
