@@ -6,23 +6,14 @@ import DriversChampionshipTable from '../components/DriversChampionshipTable';
 import {ChevronDown, ChevronUp} from "mdi-material-ui";
 import axios from 'axios';
 import { useState } from 'react';
+import CollapseWithButton from '../components/ui/CollapseWithButton';
 
 const useStyles = makeStyles(theme => ({
-  buttonBase: {
-    display: "flex",
-    width: "100%"
-  }
+
 }))
 
 const Home = props => {
   const classes = useStyles();
-  const theme = useTheme();
-
-  const [DCTopen, DCTtoggle] = useState(false);
-
-  const handleCollapse = name => {
-    DCTtoggle(!DCTopen)
-  }
 
   return (
     <Layout name="Dashboard">
@@ -30,12 +21,9 @@ const Home = props => {
       <Grid container spacing={3}>
         <Grid item md={6} lg={4}>
           <Paper className={classes.paper}>
-            <Collapse collapsedHeight="200px" in={DCTopen}>
-              <DriversChampionshipTable data={props.driversChampionhipData} />
-            </Collapse>
-            <ButtonBase size="small" onClick={handleCollapse} className={classes.buttonBase}>
-                {DCTopen ? <ChevronUp /> : <ChevronDown />}
-            </ButtonBase>           
+            <CollapseWithButton height="200px">
+              <DriversChampionshipTable data={props.driversChampionhipData} />  
+            </CollapseWithButton>
           </Paper>
         </Grid>
         <Grid item md={12} lg={8}>
