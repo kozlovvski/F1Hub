@@ -5,6 +5,7 @@ import DriversStandings from "../components/DriversStandings";
 import axios from "axios";
 import CollapseWithButton from "../components/ui/CollapseWithButton";
 import ConstructorsStandings from "../components/ConstructorsStandings";
+import cachedAxios from "../util/cachedAxios";
 
 const Home = props => (
   <Layout name="Dashboard">
@@ -36,8 +37,28 @@ const Home = props => (
 );
 
 Home.getInitialProps = async () => {
+  // const getDriversStandings = async () => {
+  //   const res = await axios(
+  //     `https://ergast.com/api/f1/current/driverStandings.json`
+  //   );
+  //   const resData = await res.data;
+  //   const driversStandings = await resData.MRData.StandingsTable
+  //     .StandingsLists[0];
+  //   return driversStandings;
+  // };
+
+  // const getConstructorsStandings = async () => {
+  //   const res = await axios(
+  //     `https://ergast.com/api/f1/current/constructorStandings.json`
+  //   );
+  //   const resData = await res.data;
+  //   const constructorsStandings = await resData.MRData.StandingsTable
+  //     .StandingsLists[0];
+  //   return constructorsStandings;
+  // };
+
   const getDriversStandings = async () => {
-    const res = await axios(
+    const res = await cachedAxios(
       `https://ergast.com/api/f1/current/driverStandings.json`
     );
     const resData = await res.data;
@@ -47,7 +68,7 @@ Home.getInitialProps = async () => {
   };
 
   const getConstructorsStandings = async () => {
-    const res = await axios(
+    const res = await cachedAxios(
       `https://ergast.com/api/f1/current/constructorStandings.json`
     );
     const resData = await res.data;
