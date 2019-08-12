@@ -8,7 +8,8 @@ const themes = {
 	}),
 	darkTheme: createMuiTheme({
 		palette: {
-			type: "dark"
+			type: "dark",
+
 		}
 	})
 }
