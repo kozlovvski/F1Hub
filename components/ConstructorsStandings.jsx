@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }))
 
-const DriversChampionshipTable = props => {
+const ConstructorsStandings = props => {
 	const classes = useStyles();
 	const theme = useTheme();
 
@@ -28,7 +28,7 @@ const DriversChampionshipTable = props => {
 		<>
 			<Toolbar className={classes.tableHeader}>
 					<Typography variant="h6" component="h3" className={classes.tableName}>
-						Drivers Championship
+						Constructors Standings
 					</Typography>
 					<Typography variant="caption" className={classes.roundName}>
 						{"after round\u00A0" + props.data.round}
@@ -38,16 +38,16 @@ const DriversChampionshipTable = props => {
 				<TableHead>
 					<TableRow>
 						<TableCell className={classes.tableHeaderCell}>Pos.</TableCell>
-						<TableCell className={classes.tableHeaderCell}>Driver</TableCell>
+						<TableCell className={classes.tableHeaderCell}>Constructor</TableCell>
 						<TableCell className={classes.tableHeaderCell}>Points</TableCell>
 						<TableCell className={classes.tableHeaderCell}>Wins</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{props.data.DriverStandings.map(row => (
-						<TableRow key={row.Driver.driverId}>
+					{props.data.ConstructorStandings.map(row => (
+						<TableRow key={row.Constructor.constructorId}>
 							<TableCell>{row.position}</TableCell>
-							<TableCell>{`${row.Driver.givenName} ${row.Driver.familyName}`}</TableCell>
+							<TableCell>{row.Constructor.name}</TableCell>
 							<TableCell>{row.points}</TableCell>
 							<TableCell>{row.wins}</TableCell>
 						</TableRow>
@@ -58,18 +58,18 @@ const DriversChampionshipTable = props => {
 	)
 }
 
-DriversChampionshipTable.propTypes = {
+ConstructorsStandings.propTypes = {
 	year: PropTypes.string,
 	data: PropTypes.shape({
-		DriverStandings: PropTypes.array,
+		ConstructorsStandings: PropTypes.array,
 		round: PropTypes.string,
 		season: PropTypes.string
 	})
 }
 
-DriversChampionshipTable.defaultProps = {
+ConstructorsStandings.defaultProps = {
 	year: "current"
 }
 
 
-export default DriversChampionshipTable
+export default ConstructorsStandings
