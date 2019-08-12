@@ -73,7 +73,6 @@ Home.getInitialProps = async () => {
     const resData = await res.data;
     const constructorsStandings = await resData.MRData.StandingsTable
     .StandingsLists[0];
-    console.log(constructorsStandings);
     return constructorsStandings;
   }
 

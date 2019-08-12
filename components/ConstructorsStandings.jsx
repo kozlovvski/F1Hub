@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme, Typography, Table, TableHead, TableRow, TableCell, TableBody, Toolbar } from "@material-ui/core";
+import TeamColorBar from './ui/TeamColorBar';
 
 const useStyles = makeStyles(theme => ({
   tableName: {
@@ -23,7 +24,6 @@ const useStyles = makeStyles(theme => ({
 const ConstructorsStandings = props => {
 	const classes = useStyles();
 	const theme = useTheme();
-
 	return (
 		<>
 			<Toolbar className={classes.tableHeader}>
@@ -47,11 +47,12 @@ const ConstructorsStandings = props => {
 					{props.data.ConstructorStandings.map(row => (
 						<TableRow key={row.Constructor.constructorId}>
 							<TableCell>{row.position}</TableCell>
-							<TableCell>{row.Constructor.name}</TableCell>
+							<TableCell><TeamColorBar team={row.Constructor.name}>{row.Constructor.name}</TeamColorBar></TableCell>
 							<TableCell>{row.points}</TableCell>
 							<TableCell>{row.wins}</TableCell>
 						</TableRow>
-					))}
+						)
+					)}
 				</TableBody>
 			</Table>
 		</>

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme, Typography, Table, TableHead, TableRow, TableCell, TableBody, Toolbar } from "@material-ui/core";
+import TeamColorBar from './ui/TeamColorBar';
 
 const useStyles = makeStyles(theme => ({
   tableName: {
@@ -47,7 +48,11 @@ const DriversStandings = props => {
 					{props.data.DriverStandings.map(row => (
 						<TableRow key={row.Driver.driverId}>
 							<TableCell>{row.position}</TableCell>
-							<TableCell>{`${row.Driver.givenName} ${row.Driver.familyName}`}</TableCell>
+							<TableCell>
+								<TeamColorBar team={row.Constructors[0].name}>
+									{`${row.Driver.givenName} ${row.Driver.familyName}`}
+								</TeamColorBar>
+							</TableCell>
 							<TableCell>{row.points}</TableCell>
 							<TableCell>{row.wins}</TableCell>
 						</TableRow>
