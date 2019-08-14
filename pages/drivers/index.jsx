@@ -11,7 +11,9 @@ import {
   CardContent,
   Typography,
   makeStyles,
-  Hidden
+  Hidden,
+  Select,
+  MenuItem
 } from "@material-ui/core";
 import TeamColorBar from "../../components/ui/TeamColorBar";
 import { useState, useEffect } from "react";
@@ -91,22 +93,42 @@ const DriverCard = props => {
 
 const Drivers = props => {
   const classes = useStyles();
-
+  
+  const [data, setData] = useState(props.driversStandingsData)
+  const [season, setSeason] = useState("current")
+  
+  const changeSeason = async e => {
+    setSeason(e.target.value)
+    setData(await getDriversStandings(e.target.value))
+  }
+  
   return (
     <>
       <Head title="Drivers" />
+        <Select
+          value={season}
+          onChange={changeSeason}
+          inputProps={{
+            name: 'season',
+            id: 'season-select',
+          }}
+        >
+          <MenuItem value="current">Current</MenuItem>
+          <MenuItem value={2018}>2018</MenuItem>
+          <MenuItem value={2017}>2017</MenuItem>
+        </Select>
       <div className={classes.container}>
         <Paper className={classes.driversStandings}>
           <Hidden mdUp>
             <CollapseWithButton height="200px">
-              <DriversStandings data={props.driversStandingsData} />
+              <DriversStandings data={data} />
             </CollapseWithButton>
           </Hidden>
           <Hidden smDown>
-            <DriversStandings data={props.driversStandingsData} />
+            <DriversStandings data={data} />
           </Hidden>
         </Paper>
-        {props.driversStandingsData.DriverStandings.map(row => (
+        {data.DriverStandings.map(row => (
           <DriverCard data={row} key={row.Driver.driverId} />
         ))}
       </div>
@@ -114,14 +136,14 @@ const Drivers = props => {
   );
 };
 
-Drivers.getInitialProps = async () => {
-  const getDriversStandings = async () => {
-    const data = await cachedFetch(
-      `https://ergast.com/api/f1/current/driverStandings.json`
-    ).then(res => res.MRData.StandingsTable.StandingsLists[0]);
-    return data;
-  };
+const getDriversStandings = async (season = "current") => {
+  const data = await cachedFetch(
+    `https://ergast.com/api/f1/${season}/driverStandings.json`
+  ).then(res => res.MRData.StandingsTable.StandingsLists[0]);
+  return data;
+};
 
+Drivers.getInitialProps = async () => {
   return {
     name: "Drivers",
     driversStandingsData: await getDriversStandings()
