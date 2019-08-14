@@ -36,20 +36,17 @@ const Home = props => (
 
 Home.getInitialProps = async () => {
   const getDriversStandings = async () => {
-    const res = await cachedFetch(`https://ergast.com/api/f1/current/driverStandings.json`
-    );
-    const driversStandings = await res.MRData.StandingsTable
-      .StandingsLists[0];
-    return driversStandings;
+    const data = await cachedFetch(
+      `https://ergast.com/api/f1/current/driverStandings.json`
+    ).then(res => res.MRData.StandingsTable.StandingsLists[0]);
+    return data;
   };
 
   const getConstructorsStandings = async () => {
-    const res = await cachedFetch(
+    const data = await cachedFetch(
       `https://ergast.com/api/f1/current/constructorStandings.json`
-      );
-    const constructorsStandings = await res.MRData.StandingsTable
-      .StandingsLists[0];
-    return constructorsStandings;
+    ).then(res => res.MRData.StandingsTable.StandingsLists[0]);
+    return data;
   };
 
   return {

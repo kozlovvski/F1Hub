@@ -68,10 +68,10 @@ const Drivers = props => {
 
 Drivers.getInitialProps = async () => {
   const getDriversStandings = async () => {
-    ;
-    const res = await cachedFetch(`https://ergast.com/api/f1/current/driverStandings.json`);
-    const driversStandings = await res.MRData.StandingsTable.StandingsLists[0];
-    return driversStandings;
+    const data = await cachedFetch(
+      `https://ergast.com/api/f1/current/driverStandings.json`
+    ).then(res => res.MRData.StandingsTable.StandingsLists[0])
+    return data;
   };
 
   return {
