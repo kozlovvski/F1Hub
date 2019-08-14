@@ -1,15 +1,14 @@
 import lscache from 'lscache';
-import axios from "axios";
+import fetch from 'isomorphic-unfetch';
 
-const TTL_MINUTES = 5;
+const TTL_MINUTES = 60;
 
-export default async function cachedAxios(url) {
+export default async function cachedFetch(url, options) {
   let cachedResponse = lscache.get(url);
 
-  // If there is no cached response,
-  // do the actual call and store the response
   if (cachedResponse === null) {
-    cachedResponse = await axios(url)
+    cachedResponse = await fetch(url, options)
+      .then(response => response.json());
     lscache.set(url, cachedResponse, TTL_MINUTES);
   }
 
