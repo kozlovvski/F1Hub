@@ -1,9 +1,9 @@
-import Head from "../components/Head";
+import Head from "components/Head";
 import { Grid, Paper } from "@material-ui/core";
-import DriversStandings from "../components/DriversStandings";
-import CollapseWithButton from "../components/ui/CollapseWithButton";
-import ConstructorsStandings from "../components/ConstructorsStandings";
-import cachedFetch from "../util/cachedFetch";
+import DriversStandings from "components/DriversStandings";
+import CollapseWithButton from "components/ui/CollapseWithButton";
+import ConstructorsStandings from "components/ConstructorsStandings";
+import cachedFetch from "util/cachedFetch";
 
 const Home = props => (
   <>
