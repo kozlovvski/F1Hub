@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
-      flesmhrink: 0
+      flexShrink: 0
     }
   },
   drawerPaper: {
