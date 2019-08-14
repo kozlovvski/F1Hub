@@ -1,9 +1,12 @@
-import Head from "components/Head";
 import { Grid, Paper } from "@material-ui/core";
+
+import Head from "components/Head";
 import DriversStandings from "components/DriversStandings";
 import CollapseWithButton from "components/ui/CollapseWithButton";
 import ConstructorsStandings from "components/ConstructorsStandings";
-import cachedFetch from "util/cachedFetch";
+
+import getConstructorsStandings from "util/getConstructorsStandings";
+import getDriversStandings from "util/getDriversStandings";
 
 const Home = props => (
   <>
@@ -35,20 +38,6 @@ const Home = props => (
 );
 
 Home.getInitialProps = async () => {
-  const getDriversStandings = async () => {
-    const data = await cachedFetch(
-      `https://ergast.com/api/f1/current/driverStandings.json`
-    ).then(res => res.MRData.StandingsTable.StandingsLists[0]);
-    return data;
-  };
-
-  const getConstructorsStandings = async () => {
-    const data = await cachedFetch(
-      `https://ergast.com/api/f1/current/constructorStandings.json`
-    ).then(res => res.MRData.StandingsTable.StandingsLists[0]);
-    return data;
-  };
-
   return {
     name: "Dashboard",
     driversStandingsData: await getDriversStandings(),

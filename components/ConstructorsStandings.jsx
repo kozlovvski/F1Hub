@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme, Typography, Table, TableHead, TableRow, TableCell, TableBody, Toolbar } from "@material-ui/core";
-import TeamColorBar from './ui/TeamColorBar';
+import { makeStyles, Typography, Table, TableHead, TableRow, TableCell, TableBody, Toolbar } from "@material-ui/core";
+
+import TeamColorBar from 'components/ui/TeamColorBar';
 
 const useStyles = makeStyles(theme => ({
   tableName: {
@@ -23,7 +24,6 @@ const useStyles = makeStyles(theme => ({
 
 const ConstructorsStandings = props => {
 	const classes = useStyles();
-	const theme = useTheme();
 	return (
 		<>
 			<Toolbar className={classes.tableHeader}>

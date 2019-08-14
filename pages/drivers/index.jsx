@@ -1,22 +1,23 @@
-import Head from "components/Head";
-import cachedFetch from "util/cachedFetch";
-import CollapseWithButton from "components/ui/CollapseWithButton";
-import DriversStandings from "components/DriversStandings";
 import {
   Paper,
-  Grid,
   Card,
   CardActionArea,
   CardMedia,
   CardContent,
   Typography,
   makeStyles,
-  Hidden,
-  Select,
-  MenuItem
+  Hidden
 } from "@material-ui/core";
-import TeamColorBar from "../../components/ui/TeamColorBar";
+
+import Head from "components/Head";
+import CollapseWithButton from "components/ui/CollapseWithButton";
+import DriversStandings from "components/DriversStandings";
+import TeamColorBar from "components/ui/TeamColorBar";
+import SeasonsSelect from "components/SeasonsList";
+
 import { useState, useEffect } from "react";
+
+import getDriversStandings from "util/getDriversStandings";
 import getWikiDefaultImage from "util/getWikiDefaultImage";
 
 const useStyles = makeStyles(theme => ({
@@ -74,7 +75,7 @@ const DriverCard = props => {
         <CardMedia
           style={{ height: 300, backgroundPositionY: "25%" }}
           image={imageUrl}
-          title="TEST"
+          title={`${data.Driver.givenName} ${data.Driver.familyName}`}
         />
         <CardContent>
           <TeamColorBar team={data.Constructors[0].name}>
@@ -93,30 +94,19 @@ const DriverCard = props => {
 
 const Drivers = props => {
   const classes = useStyles();
-  
-  const [data, setData] = useState(props.driversStandingsData)
-  const [season, setSeason] = useState("current")
-  
+
+  const [data, setData] = useState(props.driversStandingsData);
+  const [season, setSeason] = useState("current");
+
   const changeSeason = async e => {
-    setSeason(e.target.value)
-    setData(await getDriversStandings(e.target.value))
-  }
-  
+    setSeason(e.target.value);
+    setData(await getDriversStandings(e.target.value));
+  };
+
   return (
     <>
       <Head title="Drivers" />
-        <Select
-          value={season}
-          onChange={changeSeason}
-          inputProps={{
-            name: 'season',
-            id: 'season-select',
-          }}
-        >
-          <MenuItem value="current">Current</MenuItem>
-          <MenuItem value={2018}>2018</MenuItem>
-          <MenuItem value={2017}>2017</MenuItem>
-        </Select>
+      <SeasonsSelect value={season} onChange={changeSeason} />
       <div className={classes.container}>
         <Paper className={classes.driversStandings}>
           <Hidden mdUp>
@@ -134,13 +124,6 @@ const Drivers = props => {
       </div>
     </>
   );
-};
-
-const getDriversStandings = async (season = "current") => {
-  const data = await cachedFetch(
-    `https://ergast.com/api/f1/${season}/driverStandings.json`
-  ).then(res => res.MRData.StandingsTable.StandingsLists[0]);
-  return data;
 };
 
 Drivers.getInitialProps = async () => {

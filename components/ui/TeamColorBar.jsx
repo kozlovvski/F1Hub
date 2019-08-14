@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import getConstructorColor from "../../util/getConstructorColor";
 import { Box } from "@material-ui/core";
+
+import getConstructorColor from "util/getConstructorColor";
 
 const TeamColorBar = props => (
   <Box

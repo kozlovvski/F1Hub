@@ -1,7 +1,5 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import Link from "next/link";
-
 import {
   CssBaseline,
   Hidden,
@@ -14,11 +12,9 @@ import {
   Link as MaterialLink,
   Tooltip,
   useScrollTrigger,
-  Paper
 } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import { spacing } from "@material-ui/system";
 import MenuIcon from "@material-ui/icons/Menu";
 import { GithubCircle, Lightbulb, LightbulbOutline } from "mdi-material-ui";
 
@@ -80,7 +76,6 @@ const useStyles = makeStyles(theme => ({
 
 const Layout = props => {
   const classes = useStyles();
-  const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleToggleDrawer = () => {

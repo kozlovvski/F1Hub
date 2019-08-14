@@ -1,6 +1,5 @@
-import React from "react";
 import App from "next/app";
-import LayoutWrapper from "../components/Layout";
+import LayoutWrapper from "components/Layout";
 
 class MyApp extends App {
   render() {
