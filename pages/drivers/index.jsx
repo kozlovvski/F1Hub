@@ -17,6 +17,7 @@ import TeamColorBar from "components/ui/TeamColorBar";
 import SeasonsSelect from "components/SeasonsList";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 import getDriversStandings from "util/getDriversStandings";
 import getWikiDefaultImage from "util/getWikiDefaultImage";
@@ -74,23 +75,25 @@ const DriverCard = props => {
 
   return (
     <Card>
-      <CardActionArea>
-        <CardMedia
-          style={{ height: 300, backgroundPositionY: "25%" }}
-          image={imageUrl}
-          title={`${data.Driver.givenName} ${data.Driver.familyName}`}
-        />
-        <CardContent>
-          <TeamColorBar team={data.Constructors[0].name}>
-            <Typography variant="h5" component="h3">
-              {`${data.Driver.givenName} ${data.Driver.familyName}`}
-            </Typography>
-            <Typography variant="overline" component="p">
-              {data.Constructors[0].name}
-            </Typography>
-          </TeamColorBar>
-        </CardContent>
-      </CardActionArea>
+      <Link href={`/drivers/${data.Driver.driverId}`}>
+        <CardActionArea>
+          <CardMedia
+            style={{ height: 300, backgroundPositionY: "25%" }}
+            image={imageUrl}
+            title={`${data.Driver.givenName} ${data.Driver.familyName}`}
+          />
+          <CardContent>
+            <TeamColorBar team={data.Constructors[0].name}>
+              <Typography variant="h5" component="h3">
+                {`${data.Driver.givenName} ${data.Driver.familyName}`}
+              </Typography>
+              <Typography variant="overline" component="p">
+                {data.Constructors[0].name}
+              </Typography>
+            </TeamColorBar>
+          </CardContent>
+        </CardActionArea>
+      </Link>
     </Card>
   );
 };
