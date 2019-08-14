@@ -9,7 +9,8 @@ const SeasonsSelect = props => {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getSeasonsList();
+      let data = await getSeasonsList();
+      data.reverse();
       setSeasons(data);
     }
     fetchData();

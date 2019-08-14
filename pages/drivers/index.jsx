@@ -6,7 +6,8 @@ import {
   CardContent,
   Typography,
   makeStyles,
-  Hidden
+  Hidden,
+  InputLabel
 } from "@material-ui/core";
 
 import Head from "components/Head";
@@ -26,13 +27,15 @@ const useStyles = makeStyles(theme => ({
       gridTemplateColumns: "1fr"
     },
     [theme.breakpoints.up("sm")]: {
-      gridTemplateColumns: "repeat(2, 1fr)"
+      gridTemplateColumns: "repeat(2, 1fr)",
+      paddingTop: theme.spacing(3)
     },
     [theme.breakpoints.up("lg")]: {
       gridTemplateColumns: "repeat(4, 1fr)"
     },
     display: "grid",
-    gridGap: theme.spacing(3)
+    gridGap: theme.spacing(3),
+    paddingTop: theme.spacing(2)
   },
   driversStandings: {
     [theme.breakpoints.up("xs")]: {
@@ -106,7 +109,13 @@ const Drivers = props => {
   return (
     <>
       <Head title="Drivers" />
-      <SeasonsSelect value={season} onChange={changeSeason} />
+      <InputLabel htmlFor="select-season">Choose season:</InputLabel>
+      <SeasonsSelect
+        name="season"
+        id="select-season"
+        value={season}
+        onChange={changeSeason}
+      />
       <div className={classes.container}>
         <Paper className={classes.driversStandings}>
           <Hidden mdUp>
