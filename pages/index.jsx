@@ -1,5 +1,4 @@
 import Head from "../components/Head";
-import Layout from "../components/Layout";
 import { Grid, Paper } from "@material-ui/core";
 import DriversStandings from "../components/DriversStandings";
 import CollapseWithButton from "../components/ui/CollapseWithButton";
@@ -7,7 +6,7 @@ import ConstructorsStandings from "../components/ConstructorsStandings";
 import cachedFetch from "../util/cachedFetch";
 
 const Home = props => (
-  <Layout name="Dashboard">
+  <>
     <Head title="Home" />
     <Grid container spacing={3}>
       <Grid item xs={12} lg={4}>
@@ -32,7 +31,7 @@ const Home = props => (
         <Paper>elo2</Paper>
       </Grid>
     </Grid>
-  </Layout>
+  </>
 );
 
 Home.getInitialProps = async () => {
@@ -54,6 +53,7 @@ Home.getInitialProps = async () => {
   };
 
   return {
+    name: "Dashboard",
     driversStandingsData: await getDriversStandings(),
     constructorsStandingsData: await getConstructorsStandings()
   };
