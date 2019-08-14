@@ -38,5 +38,8 @@ CollapseWithButton.propTypes = {
   height: PropTypes.string.isRequired
 }
 
+CollapseWithButton.defaultProps = {
+  height: "200px"
+}
 
 export default CollapseWithButton;
