@@ -14,12 +14,10 @@ import {
   useScrollTrigger,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { GithubCircle, Lightbulb, LightbulbOutline } from "mdi-material-ui";
 
 import Navigation from "./Navigation";
-import themes from "../material-ui/themes";
 
 const drawerWidth = 240;
 
@@ -181,17 +179,4 @@ Layout.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-const LayoutWrapper = props => {
-	const [darkTheme, setDarkTheme] = useState(false)
-
-	const handleThemeChange = () => {
-		setDarkTheme(!darkTheme)
-	}
-  return (
-    <ThemeProvider theme={darkTheme ? themes.darkTheme : themes.lightTheme}>
-      <Layout name={props.name} darkTheme={darkTheme} handleThemeChange={handleThemeChange}>{props.children}</Layout>
-    </ThemeProvider>
-  );
-};
-
-export default LayoutWrapper;
+export default Layout;
