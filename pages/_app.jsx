@@ -38,7 +38,7 @@ class MyApp extends App {
 
     // add value from cookie
     const cookies = parseCookies(ctx.req);
-    pageProps.darkTheme = cookies.darkTheme
+    pageProps.darkTheme = typeof cookies.darkTheme == "undefined" ? false : cookies.darkTheme
     return { pageProps };
   }
 
