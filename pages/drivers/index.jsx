@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
 const DriverCard = props => {
   const { data } = props;
   const [imageUrl, setImageUrl] = useState(
-    "https://via.placeholder.com/350x150"
+    "https://via.placeholder.com/350x200"
   );
 
   useEffect(() => {
