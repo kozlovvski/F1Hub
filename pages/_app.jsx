@@ -4,6 +4,16 @@ import themes from "../material-ui/themes";
 import { ThemeProvider } from "@material-ui/styles";
 import parseCookies from 'util/parseCookies.js'
 import Cookie from 'js-cookie'
+import NProgress from 'nprogress'
+import Router from 'next/router'
+
+Router.events.on('routeChangeStart', url => {
+  console.log(`Loading: ${url}`)
+  NProgress.start()
+})
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
+
 
 class MyApp extends App {
   constructor(props) {
@@ -30,7 +40,7 @@ class MyApp extends App {
     }
   }
 
-  static async getInitialProps({ Component, ctx }) {
+  static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
