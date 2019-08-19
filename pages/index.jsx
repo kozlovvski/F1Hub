@@ -4,9 +4,11 @@ import Head from "components/Head";
 import DriversStandings from "components/DriversStandings";
 import CollapseWithButton from "components/ui/CollapseWithButton";
 import ConstructorsStandings from "components/ConstructorsStandings";
+import NextRaceCard from 'components/NextRaceCard'
 
 import getConstructorsStandings from "util/getConstructorsStandings";
 import getDriversStandings from "util/getDriversStandings";
+import getNextRace from 'util/getNextRace'
 
 const Home = props => (
   <>
@@ -31,7 +33,7 @@ const Home = props => (
         </Grid>
       </Grid>
       <Grid item xs={12} lg={8}>
-        <Paper>elo2</Paper>
+        <NextRaceCard data={props.nextRaceData}/>
       </Grid>
     </Grid>
   </>
@@ -41,7 +43,8 @@ Home.getInitialProps = async () => {
   return {
     name: "Dashboard",
     driversStandingsData: await getDriversStandings(),
-    constructorsStandingsData: await getConstructorsStandings()
+    constructorsStandingsData: await getConstructorsStandings(),
+    nextRaceData: await getNextRace(),
   };
 };
 
