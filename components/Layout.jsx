@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   drawer: {
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       width: drawerWidth,
       flexShrink: 0
     }
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   appbar: {
     marginLeft: drawerWidth,
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       width: `calc(100% - ${drawerWidth}px)`
     }
   },
@@ -96,7 +96,7 @@ const Layout = props => {
     <div className={classes.layout}>
       <CssBaseline />
       <nav className={classes.drawer}>
-        <Hidden mdUp implementation="css">
+        <Hidden lgUp implementation="css">
           <SwipeableDrawer
             variant="temporary"
             open={mobileOpen}
@@ -108,7 +108,7 @@ const Layout = props => {
             <Navigation />
           </SwipeableDrawer>
         </Hidden>
-        <Hidden smDown implementation="css">
+        <Hidden mdDown implementation="css">
           <Drawer
             variant="permanent"
             open
@@ -122,7 +122,7 @@ const Layout = props => {
         <ElevationScroll>
           <AppBar position="fixed" color="default" className={classes.appbar}>
             <Toolbar>
-              <Hidden mdUp>
+              <Hidden lgUp>
                 <IconButton
                   color="inherit"
                   aria-label="toggle drawer visibility"

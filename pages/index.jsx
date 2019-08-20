@@ -14,16 +14,16 @@ const Home = props => (
   <>
     <Head title="Home" />
     <Grid container spacing={3}>
-      <Grid item xs={12} lg={4}>
+      <Grid item xs={12} md={5}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} lg={12}>
+          <Grid item xs={12} sm={6} md={12}>
             <Paper>
               <CollapseWithButton height="200px">
                 <DriversStandings data={props.driversStandingsData} />
               </CollapseWithButton>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} lg={12}>
+          <Grid item xs={12} sm={6} md={12}>
             <Paper>
               <CollapseWithButton height="200px">
                 <ConstructorsStandings data={props.constructorsStandingsData} />
@@ -32,7 +32,7 @@ const Home = props => (
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} lg={8}>
+      <Grid item xs={12} md={7}>
         <NextRaceCard data={props.nextRaceData}/>
       </Grid>
     </Grid>
