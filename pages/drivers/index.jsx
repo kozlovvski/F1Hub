@@ -14,7 +14,7 @@ import Head from "components/Head";
 import CollapseWithButton from "components/ui/CollapseWithButton";
 import DriversStandings from "components/DriversStandings";
 import TeamColorBar from "components/ui/TeamColorBar";
-import SeasonsSelect from "components/SeasonsList";
+import SeasonsSelect from "components/SeasonsSelect";
 import CenteredLoader from "components/ui/CenteredLoader";
 
 import { useState, useEffect } from "react";
@@ -101,12 +101,12 @@ const DriverCard = props => {
 
 const Drivers = props => {
 	const classes = useStyles();
+	const seasons = props.seasons.slice().reverse()
 
 	const [data, setData] = useState(props.driversStandingsData);
-	const [season, setSeason] = useState("current");
+	const [season, setSeason] = useState(seasons[0].season);
 	const [loading, setLoading] = useState(false);
 
-	const seasons = props.seasons.slice().reverse()
 
 	const changeSeason = async e => {
 		setLoading(true);
