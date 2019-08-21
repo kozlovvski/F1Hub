@@ -22,6 +22,8 @@ import Link from "next/link";
 
 import getDriversStandings from "util/getDriversStandings";
 import getWikiDefaultImage from "util/getWikiDefaultImage";
+import getSeasonsList from "util/getSeasonsList";
+
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -104,6 +106,8 @@ const Drivers = props => {
 	const [season, setSeason] = useState("current");
 	const [loading, setLoading] = useState(false);
 
+	const seasons = props.seasons.slice().reverse()
+
 	const changeSeason = async e => {
 		setLoading(true);
 
@@ -124,6 +128,7 @@ const Drivers = props => {
 				id="select-season"
 				value={season}
 				onChange={changeSeason}
+				seasonsList={seasons}
 			/>
 			<div className={classes.container}>
 				<Paper className={classes.driversStandings}>
@@ -147,7 +152,8 @@ const Drivers = props => {
 Drivers.getInitialProps = async () => {
 	return {
 		name: "Drivers",
-		driversStandingsData: await getDriversStandings()
+		driversStandingsData: await getDriversStandings(),
+		seasons: await getSeasonsList()
 	};
 };
 
