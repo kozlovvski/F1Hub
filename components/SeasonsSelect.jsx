@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Select, MenuItem } from "@material-ui/core";
+import { Select, MenuItem, InputLabel } from "@material-ui/core";
 
 import getSeasonsList from "util/getSeasonsList";
 
 const SeasonsSelect = props => (
+  <>
+    <InputLabel htmlFor="select-season">Choose season:</InputLabel>
     <Select
       value={props.value}
       onChange={props.onChange}
@@ -20,6 +22,7 @@ const SeasonsSelect = props => (
         </MenuItem>
       ))}
     </Select>
+    </>
   );
 
 SeasonsSelect.propTypes = {

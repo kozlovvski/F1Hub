@@ -6,8 +6,7 @@ import {
 	CardContent,
 	Typography,
 	makeStyles,
-	Hidden,
-	InputLabel
+	Hidden
 } from "@material-ui/core";
 
 import Head from "components/Head";
@@ -122,7 +121,6 @@ const Drivers = props => {
 	) : (
 		<>
 			<Head title="Drivers" />
-			<InputLabel htmlFor="select-season">Choose season:</InputLabel>
 			<SeasonsSelect
 				name="season"
 				id="select-season"

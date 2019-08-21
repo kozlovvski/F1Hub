@@ -25,10 +25,12 @@ import getWikiDefaultImage from "util/getWikiDefaultImage";
 import getWikiIntro from "util/getWikiIntro";
 import getConstructorsForDriver from "util/getConstructorsForDriver";
 import getSeasonsForDriver from "util/getSeasonsForDriver";
+import getRacesResultsForDriver from "util/getRacesResultsForDriver";
 
 import CenteredLoader from "components/ui/CenteredLoader";
 import TeamColorBar from "components/ui/TeamColorBar";
 import SeasonsSelect from "components/SeasonsSelect";
+import RaceResultsTable from "components/RaceResultsTable";
 
 const useStyles = makeStyles(theme => ({
 	padding: {
@@ -57,16 +59,26 @@ const DriverPage = props => {
 	const classes = useStyles();
 
 	const [season, setSeason] = useState(seasonsForDriver[0].season);
+	const [racesResultsForDriver, setRacesResultsForDriver] = useState([]);
+
 	const [loading, setLoading] = useState(true);
 
 	const changeSeason = async e => {
-		setLoading(true);
-
-		setSeason(e.target.value);
-		// setData(await getDriversStandings(e.target.value));
-
-		setLoading(false);
+		if (season != e.target.value) {
+			setLoading(true);
+			setSeason(e.target.value);
+		}
 	};
+
+	useEffect(() => {
+		async function fetchData() {
+			setRacesResultsForDriver(
+				await getRacesResultsForDriver(driverInfo.driverId, season)
+			);
+			setLoading(false);
+		}
+		fetchData();
+	}, [season]);
 
 	const DriverBio = () => (
 		<Card style={{ display: "flex" }} className={classes.fluidContainer}>
@@ -129,8 +141,22 @@ const DriverPage = props => {
 				))}
 			</List>
 		</Paper>
-  );
+	);
 
+	const RacesResults = () => (
+		<Paper className={classes.fluidContainer}>
+			<Toolbar className={classes.cardName}>
+				<Typography variant="h6" component="h3" className={classes.tableName}>
+					Race results:
+				</Typography>
+			</Toolbar>
+			{loading ? (
+				<CenteredLoader />
+			) : (
+				<RaceResultsTable data={racesResultsForDriver} />
+			)}
+		</Paper>
+	);
 
 	return (
 		<>
@@ -138,7 +164,7 @@ const DriverPage = props => {
 			<Typography variant="h2" gutterBottom>{`${driverInfo.givenName} ${
 				driverInfo.familyName
 			}`}</Typography>
-			<Grid container spacing={3} style={{ minHeight: "30%" }}>
+			<Grid container spacing={3} style={{ minHeight: 200 }}>
 				<Grid item md={6}>
 					<DriverBio />
 				</Grid>
@@ -149,19 +175,19 @@ const DriverPage = props => {
 					<DriverSeasonsList />
 				</Grid>
 			</Grid>
-			<div className={classes.paddingY} style={{display: "flex"}}>
+			<div className={classes.paddingY}>
 				<SeasonsSelect
 					seasonsList={seasonsForDriver}
 					value={season}
 					onChange={changeSeason}
 				/>
-        {/* add constructor here */}
+				{/* add constructor here */}
 			</div>
-      <Grid container spacing={3} style={{ minHeight: "60%" }}>
+			<Grid container spacing={3} style={{ minHeight: 200 }}>
 				<Grid item md={6}>
+					<RacesResults />
 				</Grid>
-				<Grid item md={6}>
-				</Grid>
+				<Grid item md={6} />
 			</Grid>
 		</>
 	);
