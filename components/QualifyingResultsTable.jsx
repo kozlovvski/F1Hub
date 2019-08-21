@@ -12,15 +12,16 @@ import {
 
 import TeamColorBar from "components/ui/TeamColorBar";
 
-const ReceResultsTable = props => (
+const QualifyingResultsTable = props => (
 	<Table size="small">
 		<TableHead>
 			<TableRow>
 				<TableCell style={{ paddingRight: 0 }}>No.</TableCell>
 				<TableCell>{props.isConstructor ? "Driver" : "Race"}</TableCell>
+				<TableCell>Q1</TableCell>
+				<TableCell>Q2</TableCell>
+				<TableCell>Q3</TableCell>
 				<TableCell>Position</TableCell>
-				<TableCell>Status</TableCell>
-				<TableCell>Time</TableCell>
 			</TableRow>
 		</TableHead>
 		<TableBody>
@@ -32,22 +33,23 @@ const ReceResultsTable = props => (
 							<TableCell>{row.raceName}</TableCell>
 						</TableRow>
 					)}
-					{row.Results.map(actualResultsRow => (
-						<TableRow key={actualResultsRow.grid}>
+					{row.QualifyingResults.map(actualQualifyingResultsRow => (
+						<TableRow key={actualQualifyingResultsRow.grid}>
 							{!props.isConstructor && (
 								<TableCell style={{ paddingRight: 0 }}>{index + 1}</TableCell>
 							)}
 							<TableCell>
 								{props.isConstructor
-									? `${actualResultsRow.Driver.givenName} ${
-											actualResultsRow.Driver.familyName
+									? `${actualQualifyingResultsRow.Driver.givenName} ${
+											actualQualifyingResultsRow.Driver.familyName
 									  }`
 									: row.raceName}
 							</TableCell>
-							<TableCell>{actualResultsRow.position}</TableCell>
-							<TableCell>{actualResultsRow.status}</TableCell>
+							<TableCell>{actualQualifyingResultsRow.Q1 || "—"}</TableCell>
+							<TableCell>{actualQualifyingResultsRow.Q2 || "—"}</TableCell>
+							<TableCell>{actualQualifyingResultsRow.Q3 || "—"}</TableCell>
 							<TableCell>
-								{actualResultsRow.Time ? actualResultsRow.Time.time : "—"}
+								{actualQualifyingResultsRow.position || "—"}
 							</TableCell>
 						</TableRow>
 					))}
@@ -57,13 +59,13 @@ const ReceResultsTable = props => (
 	</Table>
 );
 
-ReceResultsTable.propTypes = {
+QualifyingResultsTable.propTypes = {
 	data: PropTypes.array.isRequired,
 	isConstructor: PropTypes.bool
 };
 
-ReceResultsTable.defaultProps = {
+QualifyingResultsTable.defaultProps = {
 	isConstructor: false
 };
 
-export default ReceResultsTable;
+export default QualifyingResultsTable;

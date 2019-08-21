@@ -26,11 +26,13 @@ import getWikiIntro from "util/getWikiIntro";
 import getConstructorsForDriver from "util/getConstructorsForDriver";
 import getSeasonsForDriver from "util/getSeasonsForDriver";
 import getRacesResultsForDriver from "util/getRacesResultsForDriver";
+import getQualifyingResultsForDriver from "util/getQualifyingResultsForDriver";
 
 import CenteredLoader from "components/ui/CenteredLoader";
 import TeamColorBar from "components/ui/TeamColorBar";
 import SeasonsSelect from "components/SeasonsSelect";
 import RaceResultsTable from "components/RaceResultsTable";
+import QualifyingResultsTable from "components/QualifyingResultsTable";
 
 const useStyles = makeStyles(theme => ({
 	padding: {
@@ -59,7 +61,8 @@ const DriverPage = props => {
 	const classes = useStyles();
 
 	const [season, setSeason] = useState(seasonsForDriver[0].season);
-	const [racesResultsForDriver, setRacesResultsForDriver] = useState([]);
+  const [racesResultsForDriver, setRacesResultsForDriver] = useState([]);
+  const [qualifyingResultsForDriver, setQualifyingResultsForDriver] = useState([])
 
 	const [loading, setLoading] = useState(true);
 
@@ -74,7 +77,9 @@ const DriverPage = props => {
 		async function fetchData() {
 			setRacesResultsForDriver(
 				await getRacesResultsForDriver(driverInfo.driverId, season)
-			);
+      );
+      setQualifyingResultsForDriver(
+        await getQualifyingResultsForDriver(driverInfo.driverId, season))
 			setLoading(false);
 		}
 		fetchData();
@@ -156,6 +161,21 @@ const DriverPage = props => {
 				<RaceResultsTable data={racesResultsForDriver} />
 			)}
 		</Paper>
+  );
+  
+  const QualifyingResults = () => (
+		<Paper className={classes.fluidContainer}>
+			<Toolbar className={classes.cardName}>
+				<Typography variant="h6" component="h3" className={classes.tableName}>
+					Qualifying results:
+				</Typography>
+			</Toolbar>
+			{loading ? (
+				<CenteredLoader />
+			) : (
+				<QualifyingResultsTable data={qualifyingResultsForDriver} />
+			)}
+		</Paper>
 	);
 
 	return (
@@ -187,7 +207,9 @@ const DriverPage = props => {
 				<Grid item md={6}>
 					<RacesResults />
 				</Grid>
-				<Grid item md={6} />
+				<Grid item md={6}>
+          <QualifyingResults />
+        </Grid>
 			</Grid>
 		</>
 	);
