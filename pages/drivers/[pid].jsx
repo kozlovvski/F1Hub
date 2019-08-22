@@ -48,32 +48,32 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(2)
 	},
 	fluidContainer: {
-    width: "100%",
-    maxWidth: `calc(100vw - ${theme.spacing(2) * 2}px)`,
+		width: "100%",
+		maxWidth: `calc(100vw - ${theme.spacing(2) * 2}px)`,
 		height: "100%",
 		position: "relative"
 	},
-  tableContainer: {
-    overflowX: "auto",
-    width: "100%"
-  },
-  driverBio: {
-    display: "flex",
-    [theme.breakpoints.down("xs")]: {
-      flexDirection: "column"
-    }
-  },
-  driverPhoto: {
-    [theme.breakpoints.up("sm")]: {
-      width: "30%"
-    },
-    [theme.breakpoints.down("xs")]: {
-      height: "30vh"
-    },
-    backgroundPositionY: "25%",
-    backgroundSize: "cover",
-    flexShrink: 0
-  }
+	tableContainer: {
+		overflowX: "auto",
+		width: "100%"
+	},
+	driverBio: {
+		display: "flex",
+		[theme.breakpoints.down("xs")]: {
+			flexDirection: "column"
+		}
+	},
+	driverPhoto: {
+		[theme.breakpoints.up("sm")]: {
+			width: "30%"
+		},
+		[theme.breakpoints.down("xs")]: {
+			height: "30vh"
+		},
+		backgroundPositionY: "25%",
+		backgroundSize: "cover",
+		flexShrink: 0
+	}
 }));
 
 const DriverPage = props => {
@@ -124,9 +124,7 @@ const DriverPage = props => {
 					{wikiIntro}
 				</Typography>
 				<Link href={driverInfo.url} color="textPrimary">
-				<Typography variant="button">
-				read more on Wikipedia
-				</Typography>
+					<Typography variant="button">read more on Wikipedia</Typography>
 				</Link>
 			</CardContent>
 		</Card>
@@ -142,9 +140,9 @@ const DriverPage = props => {
 			<List className={classes.cardContent}>
 				{constructorsForDriver.map(row => (
 					<ListItem key={row.constructorId}>
-						<Typography variant="body1">
-							<TeamColorBar team={row.name}>{row.name}</TeamColorBar>
-						</Typography>
+						<TeamColorBar team={row.name}>
+							<Typography variant="body1">{row.name}</Typography>
+						</TeamColorBar>
 					</ListItem>
 				))}
 			</List>
@@ -178,13 +176,13 @@ const DriverPage = props => {
 					Race results:
 				</Typography>
 			</Toolbar>
-      <div className={classes.tableContainer}>
-			{loading ? (
-				<CenteredLoader />
-			) : (
-				<RaceResultsTable data={racesResultsForDriver} />
-			)}
-      </div>
+			<div className={classes.tableContainer}>
+				{loading ? (
+					<CenteredLoader />
+				) : (
+					<RaceResultsTable data={racesResultsForDriver} />
+				)}
+			</div>
 		</Paper>
 	);
 
@@ -195,13 +193,13 @@ const DriverPage = props => {
 					Qualifying results:
 				</Typography>
 			</Toolbar>
-      <div className={classes.tableContainer}>
-			{loading ? (
-				<CenteredLoader />
-			) : (
-				<QualifyingResultsTable data={qualifyingResultsForDriver} />
-      )}
-      </div>
+			<div className={classes.tableContainer}>
+				{loading ? (
+					<CenteredLoader />
+				) : (
+					<QualifyingResultsTable data={qualifyingResultsForDriver} />
+				)}
+			</div>
 		</Paper>
 	);
 
