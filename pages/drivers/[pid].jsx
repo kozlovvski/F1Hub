@@ -17,8 +17,10 @@ import {
 	TableBody,
 	TableRow,
 	List,
-	ListItem
+	ListItem,
+	Button
 } from "@material-ui/core";
+import { OpenInNew } from "mdi-material-ui";
 import { useState, useEffect } from "react";
 
 import getWikiDefaultImage from "util/getWikiDefaultImage";
@@ -118,10 +120,14 @@ const DriverPage = props => {
 				<Typography variant="h6" component="h3" gutterBottom>
 					Driver bio:
 				</Typography>
-				<Typography variant="body1">
+				<Typography variant="body1" gutterBottom>
 					{wikiIntro}
-					<Link href={driverInfo.url}>read more on Wikipedia</Link>
 				</Typography>
+				<Link href={driverInfo.url} color="textPrimary">
+				<Typography variant="button">
+				read more on Wikipedia
+				</Typography>
+				</Link>
 			</CardContent>
 		</Card>
 	);

@@ -14,7 +14,7 @@ export default async function getWikiDefaultImage(url) {
 			return text
 				.split(" ")
 				.slice(0, 50)
-				.join(" ") + "... ";
+				.join(" ") + "...";
 		} else {
 			return text;
 		}
