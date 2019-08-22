@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
 		flexShrink: 0,
 		marginRight: theme.spacing(2)
 	},
+	tableContainer: {
+		height: "calc(100% - 65px)"
+	},
 	tableHeader: {
 		padding: theme.spacing(2)
 	},
@@ -34,7 +37,7 @@ const ConstructorsStandings = props => {
 						{"after round\u00A0" + props.data.round}
 					</Typography>
 			</Toolbar>
-			<Table size="small">
+			<Table size="small"className={classes.tableContainer}>
 				<TableHead>
 					<TableRow>
 						<TableCell className={classes.tableHeaderCell}>Pos.</TableCell>

@@ -6,8 +6,7 @@ import PropTypes from "prop-types";
 const calculateStateFromProps = props => {
 	let { dateTo, numberOfFigures, mostSignificantFigure } = props;
 	const currentDate = new Date();
-	const targetDate = new Date(dateTo);
-	const diff = targetDate - currentDate;
+	const diff = dateTo - currentDate;
 	var significance = ["year", "month", "day", "hour", "min", "sec"];
 
 	let year = Math.floor(diff / 31104000000); // time diff in years
