@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import GroupIcon from "@material-ui/icons/Group";
+import { Wrench } from "mdi-material-ui";
 
 const useStyles = makeStyles(theme => ({
   branding: {
@@ -33,6 +34,11 @@ const navLinks = [
     name: "Drivers",
     icon: <GroupIcon />,
     route: "/drivers"
+  },
+  {
+    name: "Constructors",
+    icon: <Wrench />,
+    route: "/constructors"
   }
 ];
 
