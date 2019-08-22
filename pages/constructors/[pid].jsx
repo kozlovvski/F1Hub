@@ -159,7 +159,7 @@ const ConstructorPage = props => {
 				{loading ? (
 					<CenteredLoader />
 				) : (
-					<RaceResultsTable data={racesResultsForDriver} />
+					<RaceResultsTable isConstructor data={racesResultsForDriver} />
 				)}
 			</div>
 		</Paper>
@@ -176,7 +176,7 @@ const ConstructorPage = props => {
 				{loading ? (
 					<CenteredLoader />
 				) : (
-					<QualifyingResultsTable data={qualifyingResultsForDriver} />
+					<QualifyingResultsTable isConstructor data={qualifyingResultsForDriver} />
 				)}
 			</div>
 		</Paper>
@@ -206,7 +206,6 @@ const ConstructorPage = props => {
 					value={season}
 					onChange={changeSeason}
 				/>
-				{/* add constructor here */}
 			</div>
 			<Grid container spacing={3} style={{ minHeight: 200 }}>
 				<Grid item xs={12} md={6}>

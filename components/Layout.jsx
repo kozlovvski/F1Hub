@@ -41,7 +41,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   pageTitle: {
-    flexGrow: 1
+    flexGrow: 1,
+    whiteSpace: "nowrap",
+    overflow: "hidden"
   },
   page: {
     flexGrow: 1,

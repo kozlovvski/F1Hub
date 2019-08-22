@@ -5,8 +5,9 @@ import {
 	TableRow,
 	TableCell,
 	TableBody,
-	Toolbar
 } from "@material-ui/core";
+
+import PositionDifference from 'components/ui/PositionDifference'
 
 const ReceResultsTable = props => (
 	<Table size="small">
@@ -14,7 +15,7 @@ const ReceResultsTable = props => (
 			<TableRow>
 				<TableCell style={{ paddingRight: 0 }}>No.</TableCell>
 				<TableCell>{props.isConstructor ? "Driver" : "Race"}</TableCell>
-				<TableCell>Position</TableCell>
+				<TableCell>Pos.</TableCell>
 				<TableCell>Status</TableCell>
 				<TableCell>Time</TableCell>
 			</TableRow>
@@ -24,23 +25,28 @@ const ReceResultsTable = props => (
 				<React.Fragment key={row.raceName}>
 					{props.isConstructor && (
 						<TableRow>
-							<TableCell style={{ paddingRight: 0 }}>{index + 1}</TableCell>
-							<TableCell>{row.raceName}</TableCell>
+							<TableCell style={{ paddingRight: 0}}>{index + 1 + "."}</TableCell>
+							<TableCell colSpan={4} style={{ fontWeight: 700}}>{row.raceName}</TableCell>
 						</TableRow>
 					)}
 					{row.Results.map(actualResultsRow => (
 						<TableRow key={actualResultsRow.grid}>
-							{!props.isConstructor && (
-								<TableCell style={{ paddingRight: 0 }}>{index + 1}</TableCell>
-							)}
-							<TableCell>
-								{props.isConstructor
-									? `${actualResultsRow.Driver.givenName} ${
+							{props.isConstructor ? (
+								<>
+									<TableCell />
+									<TableCell>
+										{`${actualResultsRow.Driver.givenName} ${
 											actualResultsRow.Driver.familyName
-									  }`
-									: row.raceName}
-							</TableCell>
-							<TableCell>{actualResultsRow.position}</TableCell>
+										}`}
+									</TableCell>
+								</>
+							) : (
+								<>
+									<TableCell style={{ paddingRight: 0 }}>{index + 1 + "."}</TableCell>
+									<TableCell style={{ fontWeight: 700}}>{row.raceName}</TableCell>
+								</>
+							)}
+							<TableCell>{actualResultsRow.position}<PositionDifference initPos={actualResultsRow.grid} endPos={actualResultsRow.position} /></TableCell>
 							<TableCell>{actualResultsRow.status}</TableCell>
 							<TableCell>
 								{actualResultsRow.Time ? actualResultsRow.Time.time : "—"}

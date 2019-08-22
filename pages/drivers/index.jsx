@@ -79,6 +79,7 @@ const DriverCard = props => {
 				<CardActionArea>
 					<CardMedia
 						style={{ height: 300, backgroundPositionY: "25%" }}
+						// TODO: find a better way to fetch images
 						image={imageUrl ? imageUrl : "/static/images/no_photo.png"}
 						title={`${data.Driver.givenName} ${data.Driver.familyName}`}
 					/>
