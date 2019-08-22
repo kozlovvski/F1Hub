@@ -4,10 +4,11 @@ import {
 	TableHead,
 	TableRow,
 	TableCell,
-	TableBody,
+	TableBody
 } from "@material-ui/core";
 
-import PositionDifference from 'components/ui/PositionDifference'
+import PositionDifference from "components/ui/PositionDifference";
+import TeamColorBar from "components/ui/TeamColorBar";
 
 const ReceResultsTable = props => (
 	<Table size="small">
@@ -25,8 +26,12 @@ const ReceResultsTable = props => (
 				<React.Fragment key={row.raceName}>
 					{props.isConstructor && (
 						<TableRow>
-							<TableCell style={{ paddingRight: 0}}>{index + 1 + "."}</TableCell>
-							<TableCell colSpan={4} style={{ fontWeight: 700}}>{row.raceName}</TableCell>
+							<TableCell style={{ paddingRight: 0 }}>
+								{index + 1 + "."}
+							</TableCell>
+							<TableCell colSpan={4} style={{ fontWeight: 700 }}>
+								{row.raceName}
+							</TableCell>
 						</TableRow>
 					)}
 					{row.Results.map(actualResultsRow => (
@@ -35,18 +40,30 @@ const ReceResultsTable = props => (
 								<>
 									<TableCell />
 									<TableCell>
-										{`${actualResultsRow.Driver.givenName} ${
-											actualResultsRow.Driver.familyName
-										}`}
+										<TeamColorBar team={actualResultsRow.Constructor.name}>
+											{`${actualResultsRow.Driver.givenName} ${
+												actualResultsRow.Driver.familyName
+											}`}
+										</TeamColorBar>
 									</TableCell>
 								</>
 							) : (
 								<>
-									<TableCell style={{ paddingRight: 0 }}>{index + 1 + "."}</TableCell>
-									<TableCell style={{ fontWeight: 700}}>{row.raceName}</TableCell>
+									<TableCell style={{ paddingRight: 0 }}>
+										{index + 1 + "."}
+									</TableCell>
+									<TableCell style={{ fontWeight: 700 }}>
+										{row.raceName}
+									</TableCell>
 								</>
 							)}
-							<TableCell>{actualResultsRow.position}<PositionDifference initPos={actualResultsRow.grid} endPos={actualResultsRow.position} /></TableCell>
+							<TableCell>
+								{actualResultsRow.position}
+								<PositionDifference
+									initPos={actualResultsRow.grid}
+									endPos={actualResultsRow.position}
+								/>
+							</TableCell>
 							<TableCell>{actualResultsRow.status}</TableCell>
 							<TableCell>
 								{actualResultsRow.Time ? actualResultsRow.Time.time : "—"}

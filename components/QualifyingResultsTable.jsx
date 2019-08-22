@@ -7,6 +7,8 @@ import {
 	TableBody,
 } from "@material-ui/core";
 
+import TeamColorBar from "components/ui/TeamColorBar";
+
 const QualifyingResultsTable = props => (
 	<Table size="small">
 		<TableHead>
@@ -34,9 +36,11 @@ const QualifyingResultsTable = props => (
 								<>
 									<TableCell />
 									<TableCell>
-										{`${actualResultsRow.Driver.givenName} ${
-											actualResultsRow.Driver.familyName
-										}`}
+									<TeamColorBar team={actualResultsRow.Constructor.name}>
+											{`${actualResultsRow.Driver.givenName} ${
+												actualResultsRow.Driver.familyName
+											}`}
+										</TeamColorBar>
 									</TableCell>
 								</>
 							) : (
