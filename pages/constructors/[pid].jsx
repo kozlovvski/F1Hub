@@ -31,6 +31,7 @@ import getQualifyingResultsForConstructor from "util/getQualifyingResultsForCons
 import CenteredLoader from "components/ui/CenteredLoader";
 import TeamColorBar from "components/ui/TeamColorBar";
 import SeasonsSelect from "components/SeasonsSelect";
+import SeasonsDisplay from "components/SeasonsDisplay";
 import RaceResultsTable from "components/RaceResultsTable";
 import QualifyingResultsTable from "components/QualifyingResultsTable";
 
@@ -75,7 +76,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ConstructorPage = props => {
-	const { constructorInfo, wikiImage, wikiIntro, constructorsForDriver } = props;
+	const {
+		constructorInfo,
+		wikiImage,
+		wikiIntro,
+		constructorsForDriver
+	} = props;
 	const seasonsForConstructor = props.seasonsForConstructor.slice().reverse();
 	const classes = useStyles();
 
@@ -97,10 +103,16 @@ const ConstructorPage = props => {
 	useEffect(() => {
 		async function fetchData() {
 			setRacesResultsForDriver(
-				await getRacesResultsForConstructor(constructorInfo.constructorId, season)
+				await getRacesResultsForConstructor(
+					constructorInfo.constructorId,
+					season
+				)
 			);
 			setQualifyingResultsForDriver(
-				await getQualifyingResultsForConstructor(constructorInfo.constructorId, season)
+				await getQualifyingResultsForConstructor(
+					constructorInfo.constructorId,
+					season
+				)
 			);
 			setLoading(false);
 		}
@@ -128,23 +140,16 @@ const ConstructorPage = props => {
 		</Card>
 	);
 
-	const DriverSeasonsList = () => (
+	const ConstructorSeasonsList = () => (
 		<Paper className={classes.fluidContainer}>
 			<Toolbar className={classes.cardName}>
 				<Typography variant="h6" component="h3" className={classes.tableName}>
 					Seasons:
 				</Typography>
 			</Toolbar>
-			<List
-				className={classes.cardContent}
-				style={{ display: "flex", flexWrap: "wrap" }}
-			>
-				{seasonsForConstructor.map(row => (
-					<ListItem key={row.season} style={{ maxWidth: "25%" }}>
-						<Typography variant="body1">{row.season}</Typography>
-					</ListItem>
-				))}
-			</List>
+			<div className={classes.padding}>
+				<SeasonsDisplay data={seasonsForConstructor} />
+			</div>
 		</Paper>
 	);
 
@@ -176,7 +181,10 @@ const ConstructorPage = props => {
 				{loading ? (
 					<CenteredLoader />
 				) : (
-					<QualifyingResultsTable isConstructor data={qualifyingResultsForDriver} />
+					<QualifyingResultsTable
+						isConstructor
+						data={qualifyingResultsForDriver}
+					/>
 				)}
 			</div>
 		</Paper>
@@ -185,10 +193,11 @@ const ConstructorPage = props => {
 	return (
 		<>
 			<Head title={constructorInfo.name} />
-      <TeamColorBar team={constructorInfo.name}>
-			<Typography variant="h2" gutterBottom>{constructorInfo.name}</Typography>
-
-      </TeamColorBar>
+			<TeamColorBar team={constructorInfo.name}>
+				<Typography variant="h2" gutterBottom>
+					{constructorInfo.name}
+				</Typography>
+			</TeamColorBar>
 			<Grid container spacing={3} style={{ minHeight: 200 }}>
 				<Grid item xs={12} md={6}>
 					<ConstructorBio />
@@ -197,7 +206,7 @@ const ConstructorPage = props => {
 					placeholder
 				</Grid>
 				<Grid item xs={12} sm={6} md={3}>
-					<DriverSeasonsList />
+					<ConstructorSeasonsList />
 				</Grid>
 			</Grid>
 			<div className={classes.paddingY}>
@@ -225,7 +234,9 @@ ConstructorPage.getInitialProps = async ({ query }) => {
 	return {
 		name: "Constructor overview",
 		constructorInfo,
-		seasonsForConstructor: await getSeasonsForConstructor(constructorInfo.constructorId),
+		seasonsForConstructor: await getSeasonsForConstructor(
+			constructorInfo.constructorId
+		),
 		wikiImage: await getWikiDefaultImage(constructorInfo.url),
 		wikiIntro: await getWikiIntro(constructorInfo.url)
 	};
