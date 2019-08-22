@@ -46,13 +46,32 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(2)
 	},
 	fluidContainer: {
-		width: "100%",
+    width: "100%",
+    maxWidth: `calc(100vw - ${theme.spacing(2) * 2}px)`,
 		height: "100%",
 		position: "relative"
 	},
-	overflow: {
-		overflow: "auto"
-	}
+  tableContainer: {
+    overflowX: "auto",
+    width: "100%"
+  },
+  driverBio: {
+    display: "flex",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column"
+    }
+  },
+  driverPhoto: {
+    [theme.breakpoints.up("sm")]: {
+      width: "30%"
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "30vh"
+    },
+    backgroundPositionY: "25%",
+    backgroundSize: "cover",
+    flexShrink: 0
+  }
 }));
 
 const DriverPage = props => {
@@ -61,8 +80,10 @@ const DriverPage = props => {
 	const classes = useStyles();
 
 	const [season, setSeason] = useState(seasonsForDriver[0].season);
-  const [racesResultsForDriver, setRacesResultsForDriver] = useState([]);
-  const [qualifyingResultsForDriver, setQualifyingResultsForDriver] = useState([])
+	const [racesResultsForDriver, setRacesResultsForDriver] = useState([]);
+	const [qualifyingResultsForDriver, setQualifyingResultsForDriver] = useState(
+		[]
+	);
 
 	const [loading, setLoading] = useState(true);
 
@@ -77,23 +98,19 @@ const DriverPage = props => {
 		async function fetchData() {
 			setRacesResultsForDriver(
 				await getRacesResultsForDriver(driverInfo.driverId, season)
-      );
-      setQualifyingResultsForDriver(
-        await getQualifyingResultsForDriver(driverInfo.driverId, season))
+			);
+			setQualifyingResultsForDriver(
+				await getQualifyingResultsForDriver(driverInfo.driverId, season)
+			);
 			setLoading(false);
 		}
 		fetchData();
 	}, [season]);
 
 	const DriverBio = () => (
-		<Card style={{ display: "flex" }} className={classes.fluidContainer}>
+		<Card className={`${classes.fluidContainer} ${classes.driverBio}`}>
 			<CardMedia
-				style={{
-					width: "30%",
-					backgroundPositionY: "25%",
-					backgroundSize: "cover",
-					flexShrink: 0
-				}}
+				className={classes.driverPhoto}
 				image={wikiImage ? wikiImage : "/static/images/no_photo.png"}
 				title={`${driverInfo.givenName} ${driverInfo.familyName}`}
 			/>
@@ -155,26 +172,30 @@ const DriverPage = props => {
 					Race results:
 				</Typography>
 			</Toolbar>
+      <div className={classes.tableContainer}>
 			{loading ? (
 				<CenteredLoader />
 			) : (
 				<RaceResultsTable data={racesResultsForDriver} />
 			)}
+      </div>
 		</Paper>
-  );
-  
-  const QualifyingResults = () => (
+	);
+
+	const QualifyingResults = () => (
 		<Paper className={classes.fluidContainer}>
 			<Toolbar className={classes.cardName}>
 				<Typography variant="h6" component="h3" className={classes.tableName}>
 					Qualifying results:
 				</Typography>
 			</Toolbar>
+      <div className={classes.tableContainer}>
 			{loading ? (
 				<CenteredLoader />
 			) : (
 				<QualifyingResultsTable data={qualifyingResultsForDriver} />
-			)}
+      )}
+      </div>
 		</Paper>
 	);
 
@@ -185,13 +206,13 @@ const DriverPage = props => {
 				driverInfo.familyName
 			}`}</Typography>
 			<Grid container spacing={3} style={{ minHeight: 200 }}>
-				<Grid item md={6}>
+				<Grid item xs={12} md={6}>
 					<DriverBio />
 				</Grid>
-				<Grid item md={3}>
+				<Grid item xs={12} sm={6} md={3}>
 					<DriverConstructorsList />
 				</Grid>
-				<Grid item md={3}>
+				<Grid item xs={12} sm={6} md={3}>
 					<DriverSeasonsList />
 				</Grid>
 			</Grid>
@@ -204,12 +225,12 @@ const DriverPage = props => {
 				{/* add constructor here */}
 			</div>
 			<Grid container spacing={3} style={{ minHeight: 200 }}>
-				<Grid item md={6}>
+				<Grid item xs={12} md={6}>
 					<RacesResults />
 				</Grid>
-				<Grid item md={6}>
-          <QualifyingResults />
-        </Grid>
+				<Grid item xs={12} md={6}>
+					<QualifyingResults />
+				</Grid>
 			</Grid>
 		</>
 	);

@@ -1,16 +1,11 @@
 import PropTypes from "prop-types";
 import {
-	makeStyles,
-	Typography,
 	Table,
 	TableHead,
 	TableRow,
 	TableCell,
 	TableBody,
-	Toolbar
 } from "@material-ui/core";
-
-import TeamColorBar from "components/ui/TeamColorBar";
 
 const QualifyingResultsTable = props => (
 	<Table size="small">
@@ -34,7 +29,7 @@ const QualifyingResultsTable = props => (
 						</TableRow>
 					)}
 					{row.QualifyingResults.map(actualQualifyingResultsRow => (
-						<TableRow key={actualQualifyingResultsRow.grid}>
+						<TableRow key={actualQualifyingResultsRow.position}>
 							{!props.isConstructor && (
 								<TableCell style={{ paddingRight: 0 }}>{index + 1}</TableCell>
 							)}

@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Select, MenuItem, InputLabel } from "@material-ui/core";
-
-import getSeasonsList from "util/getSeasonsList";
 
 const SeasonsSelect = props => (
   <>

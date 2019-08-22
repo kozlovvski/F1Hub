@@ -1,7 +1,5 @@
 import PropTypes from "prop-types";
 import {
-	makeStyles,
-	Typography,
 	Table,
 	TableHead,
 	TableRow,
@@ -9,8 +7,6 @@ import {
 	TableBody,
 	Toolbar
 } from "@material-ui/core";
-
-import TeamColorBar from "components/ui/TeamColorBar";
 
 const ReceResultsTable = props => (
 	<Table size="small">
