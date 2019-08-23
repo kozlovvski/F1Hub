@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import NextLinkComponent from 'components/ui/NextLinkComponent'
+import NextLinkComponent from 'components/NextLinkComponent'
 import {
 	Table,
 	TableHead,
@@ -9,8 +9,8 @@ import {
 	Link
 } from "@material-ui/core";
 
-import PositionDifference from "components/ui/PositionDifference";
-import TeamColorBar from "components/ui/TeamColorBar";
+import PositionDifference from "components/PositionDifference";
+import TeamColorBar from "components/TeamColorBar";
 
 const ReceResultsTable = props => (
 	<Table size="small">

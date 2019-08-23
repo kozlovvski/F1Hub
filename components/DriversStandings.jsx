@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { makeStyles, Typography, Table, TableHead, TableRow, TableCell, TableBody, Toolbar } from "@material-ui/core";
 
-import TeamColorBar from 'components/ui/TeamColorBar';
+import TeamColorBar from 'components/TeamColorBar';
 
 const useStyles = makeStyles(theme => ({
   tableName: {

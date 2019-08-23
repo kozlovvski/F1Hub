@@ -4,7 +4,7 @@ import {
 } from "@material-ui/core";
 import { useState, useEffect } from "react";
 
-import CenteredLoader from "components/ui/CenteredLoader";
+import CenteredLoader from "components/CenteredLoader";
 
 import getSeasonsList from "util/getSeasonsList";
 
@@ -17,7 +17,7 @@ const SeasonsDisplay = props => {
 		setLoading(true)
     async function fetchData() {
 			setSeasons(
-				await getSeasonsList().then(res => res.slice().reverse())
+				await getSeasonsList()
 			)
 		}
 		fetchData();

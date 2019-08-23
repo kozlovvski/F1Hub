@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import NextLinkComponent from "components/ui/NextLinkComponent";
+import NextLinkComponent from "components/NextLinkComponent";
 import {
 	Table,
 	TableHead,
@@ -9,7 +9,7 @@ import {
 	Link
 } from "@material-ui/core";
 
-import TeamColorBar from "components/ui/TeamColorBar";
+import TeamColorBar from "components/TeamColorBar";
 
 const QualifyingResultsTable = ({ data, racesData, isConstructor }) => (
 	<Table size="small">

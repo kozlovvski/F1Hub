@@ -10,11 +10,11 @@ import {
 } from "@material-ui/core";
 
 import Head from "components/Head";
-import CollapseWithButton from "components/ui/CollapseWithButton";
+import CollapseWithButton from "components/CollapseWithButton";
 import DriversStandings from "components/DriversStandings";
-import TeamColorBar from "components/ui/TeamColorBar";
+import TeamColorBar from "components/TeamColorBar";
 import SeasonsSelect from "components/SeasonsSelect";
-import CenteredLoader from "components/ui/CenteredLoader";
+import CenteredLoader from "components/CenteredLoader";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -101,7 +101,7 @@ const DriverCard = props => {
 
 const Drivers = props => {
 	const classes = useStyles();
-	const seasons = props.seasons.slice().reverse()
+	const seasons = props.seasons
 
 	const [data, setData] = useState(props.driversStandingsData);
 	const [season, setSeason] = useState(seasons[0].season);

@@ -2,7 +2,7 @@ import { Grid, Paper } from "@material-ui/core";
 
 import Head from "components/Head";
 import DriversStandings from "components/DriversStandings";
-import CollapseWithButton from "components/ui/CollapseWithButton";
+import CollapseWithButton from "components/CollapseWithButton";
 import ConstructorsStandings from "components/ConstructorsStandings";
 import NextRaceCard from 'components/NextRaceCard'
 

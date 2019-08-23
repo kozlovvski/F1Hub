@@ -30,8 +30,8 @@ import getSeasonsForDriver from "util/getSeasonsForDriver";
 import getRacesResultsForDriver from "util/getRacesResultsForDriver";
 import getQualifyingResultsForDriver from "util/getQualifyingResultsForDriver";
 
-import CenteredLoader from "components/ui/CenteredLoader";
-import TeamColorBar from "components/ui/TeamColorBar";
+import CenteredLoader from "components/CenteredLoader";
+import TeamColorBar from "components/TeamColorBar";
 import SeasonsSelect from "components/SeasonsSelect";
 import SeasonsDisplay from "components/SeasonsDisplay";
 import RaceResultsTable from "components/RaceResultsTable";
@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
 
 const DriverPage = props => {
 	const { driverInfo, wikiImage, wikiIntro, constructorsForDriver } = props;
-	const seasonsForDriver = props.seasonsForDriver.slice().reverse();
+	const seasonsForDriver = props.seasonsForDriver
 	const classes = useStyles();
 
 	const [season, setSeason] = useState(seasonsForDriver[0].season);

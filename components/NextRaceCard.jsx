@@ -3,7 +3,7 @@ import {
 } from "@material-ui/core";
 
 import Link from "next/link";
-import DateCountdown from 'components/ui/DateCountdown';
+import DateCountdown from 'components/DateCountdown';
 
 const useStyles = makeStyles(theme => ({
   container: {
