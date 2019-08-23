@@ -33,6 +33,7 @@ import getQualifyingResultsForDriver from "util/getQualifyingResultsForDriver";
 import CenteredLoader from "components/ui/CenteredLoader";
 import TeamColorBar from "components/ui/TeamColorBar";
 import SeasonsSelect from "components/SeasonsSelect";
+import SeasonsDisplay from "components/SeasonsDisplay";
 import RaceResultsTable from "components/RaceResultsTable";
 import QualifyingResultsTable from "components/QualifyingResultsTable";
 
@@ -156,16 +157,9 @@ const DriverPage = props => {
 					Seasons:
 				</Typography>
 			</Toolbar>
-			<List
-				className={classes.cardContent}
-				style={{ display: "flex", flexWrap: "wrap" }}
-			>
-				{seasonsForDriver.map(row => (
-					<ListItem key={row.season} style={{ maxWidth: "25%" }}>
-						<Typography variant="body1">{row.season}</Typography>
-					</ListItem>
-				))}
-			</List>
+			<div className={classes.padding}>
+				<SeasonsDisplay data={seasonsForDriver} />
+			</div>
 		</Paper>
 	);
 
@@ -197,7 +191,7 @@ const DriverPage = props => {
 				{loading ? (
 					<CenteredLoader />
 				) : (
-					<QualifyingResultsTable data={qualifyingResultsForDriver} />
+					<QualifyingResultsTable data={qualifyingResultsForDriver} racesData={racesResultsForDriver} />
 				)}
 			</div>
 		</Paper>

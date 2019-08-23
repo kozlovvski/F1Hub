@@ -31,7 +31,7 @@ const ReceResultsTable = props => (
 							<TableCell style={{ paddingRight: 0 }}>
 								{index + 1 + "."}
 							</TableCell>
-							<TableCell colSpan={4} style={{ fontWeight: 700 }}>
+							<TableCell colSpan={4} style={{ fontWeight: 700, whiteSpace: "nowrap" }}>
 								{row.raceName}
 							</TableCell>
 						</TableRow>
@@ -56,12 +56,12 @@ const ReceResultsTable = props => (
 									<TableCell style={{ paddingRight: 0 }}>
 										{index + 1 + "."}
 									</TableCell>
-									<TableCell style={{ fontWeight: 700 }}>
+									<TableCell style={{ fontWeight: 700, whiteSpace: "nowrap" }}>
 										{row.raceName}
 									</TableCell>
 								</>
 							)}
-							<TableCell>
+							<TableCell style={{whiteSpace: "nowrap"}}>
 								{actualResultsRow.position}
 								<PositionDifference
 									initPos={actualResultsRow.grid}

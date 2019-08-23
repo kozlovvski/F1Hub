@@ -86,8 +86,8 @@ const ConstructorPage = props => {
 	const classes = useStyles();
 
 	const [season, setSeason] = useState(seasonsForConstructor[0].season);
-	const [racesResultsForDriver, setRacesResultsForDriver] = useState([]);
-	const [qualifyingResultsForDriver, setQualifyingResultsForDriver] = useState(
+	const [racesResultsForConstructor, setracesResultsForConstructor] = useState([]);
+	const [qualifyingResultsForConstructor, setqualifyingResultsForConstructor] = useState(
 		[]
 	);
 
@@ -102,13 +102,13 @@ const ConstructorPage = props => {
 
 	useEffect(() => {
 		async function fetchData() {
-			setRacesResultsForDriver(
+			setracesResultsForConstructor(
 				await getRacesResultsForConstructor(
 					constructorInfo.constructorId,
 					season
 				)
 			);
-			setQualifyingResultsForDriver(
+			setqualifyingResultsForConstructor(
 				await getQualifyingResultsForConstructor(
 					constructorInfo.constructorId,
 					season
@@ -164,7 +164,7 @@ const ConstructorPage = props => {
 				{loading ? (
 					<CenteredLoader />
 				) : (
-					<RaceResultsTable isConstructor data={racesResultsForDriver} />
+					<RaceResultsTable isConstructor data={racesResultsForConstructor} />
 				)}
 			</div>
 		</Paper>
@@ -183,7 +183,8 @@ const ConstructorPage = props => {
 				) : (
 					<QualifyingResultsTable
 						isConstructor
-						data={qualifyingResultsForDriver}
+						data={qualifyingResultsForConstructor}
+						racesData={racesResultsForConstructor}
 					/>
 				)}
 			</div>
