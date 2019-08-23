@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
+import NextLinkComponent from 'components/ui/NextLinkComponent'
 import {
 	Table,
 	TableHead,
 	TableRow,
 	TableCell,
 	TableBody,
+	Link
 } from "@material-ui/core";
 
 import TeamColorBar from "components/ui/TeamColorBar";
@@ -37,9 +39,11 @@ const QualifyingResultsTable = props => (
 									<TableCell />
 									<TableCell>
 									<TeamColorBar team={actualResultsRow.Constructor.name}>
-											{`${actualResultsRow.Driver.givenName} ${
-												actualResultsRow.Driver.familyName
-											}`}
+									<Link component={NextLinkComponent} color="textPrimary" href={"/drivers/" + actualResultsRow.Driver.driverId}>
+												{`${actualResultsRow.Driver.givenName} ${
+													actualResultsRow.Driver.familyName
+												}`}
+											</Link>
 										</TeamColorBar>
 									</TableCell>
 								</>
