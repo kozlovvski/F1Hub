@@ -8,6 +8,8 @@ Live demo: https://f1-hub.kozlovvski.now.sh
 
 * Find a better way to fetch drivers and constructors photos. Currently I use page images from Wikipedia API, but that works poorly for constructors. I consider using Bing Search API, but free version comes with only 3 requests per second and that won't work for pages displaying multiple drivers/constructors
 * Setup own instance of the API and fetch from it. Currently the biggest problem of the app is slow API response time which kills load times. I plan to somehow integrate [this repo](https://github.com/jcnewell/ergast-f1-api) into one server with Next.js front-end.
+* Expand [constructor colors database](https://github.com/kozlovvski/F1Hub/blob/master/util/getConstructorColor.js)
+* Expand [circuit images directory](https://github.com/kozlovvski/F1Hub/tree/master/static/images/circuits)
 
 ## Getting Started
 
