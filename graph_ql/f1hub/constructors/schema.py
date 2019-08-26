@@ -1,0 +1,24 @@
+import graphene
+from graphene_django import DjangoObjectType
+from django.db.models import Q
+
+
+from .models import Constructor
+
+
+class ConstructorType(DjangoObjectType):
+    class Meta:
+        model = Constructor
+
+
+class Query(graphene.ObjectType):
+    constructors = graphene.List(ConstructorType, name=graphene.String())
+
+    def resolve_constructors(self, info, name=None, **kwargs):
+        if name:
+            filter = (
+                Q(name__iexact=name)
+            )
+            return Constructor.objects.filter(filter)
+
+        return Constructor.objects.all()
