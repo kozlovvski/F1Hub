@@ -20,6 +20,6 @@ class Results(models.Model):
     fastestLapTime = models.TextField(null=True)
     fastestLapSpeed = models.TextField(null=True)
     statusId = models.IntegerField(null=True)
-
-
+    driver = models.ForeignKey('drivers.Driver', on_delete=models.CASCADE)
+    
     objects = models.Manager()

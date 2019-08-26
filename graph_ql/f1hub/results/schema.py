@@ -10,7 +10,9 @@ class ResultsType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    results = graphene.List(ResultsType)
+    results = graphene.List(ResultsType, driver=graphene.String())
 
-    def resolve_results(self, info, **kwargs):
+    def resolve_results(self, info,driver=None, **kwargs):
+        if driver:
+            return Results.objects.filter(driver_id=driver)
         return Results.objects.all()
