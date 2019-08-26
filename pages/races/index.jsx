@@ -138,7 +138,7 @@ const Races = props => {
 						</Typography>
 					</Toolbar>
 					<div className={classes.tableContainer}>
-						<RaceScheduleTable data={data} />
+						<RaceScheduleTable data={data} includeCircuit/>
 					</div>
 				</CollapseWithButton>
 			</Hidden>
@@ -149,7 +149,7 @@ const Races = props => {
 					</Typography>
 				</Toolbar>
 				<div className={classes.tableContainer}>
-					<RaceScheduleTable data={data} />
+					<RaceScheduleTable data={data} includeCircuit />
 				</div>
 			</Hidden>
 		</Paper>

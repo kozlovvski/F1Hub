@@ -1,15 +1,14 @@
+import PropTypes from "prop-types";
 import {
   Paper, makeStyles, Typography, Toolbar
 } from "@material-ui/core";
 
-import Link from "next/link";
 import DateCountdown from 'components/DateCountdown';
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
     flexDirection: "column",
-    minHeight: 500,
     backgroundSize: "cover",
     color: "#fff"
   },
@@ -34,13 +33,12 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const NextRaceCard = props => {
-  const { data } = props;
+const NextRaceCard = ({data, className}) => {
   const classes = useStyles();
   const localRaceDate = new Date(data.date + "T" + data.time)
 
   return (
-    <Paper className={classes.container} style={{backgroundImage: `url(/static/images/circuits/${data.Circuit.circuitId}.jpg)`}}>
+    <Paper className={`${classes.container} ${className}`} style={{backgroundImage: `url(/static/images/circuits/${data.Circuit.circuitId}.jpg)`}}>
       <Toolbar className={classes.cardHeader}>
 					<Typography variant="h6" component="h3" className={classes.cardName}>
 						Next race:
@@ -63,6 +61,11 @@ const NextRaceCard = props => {
       </div>
     </Paper>
   );
+};
+
+NextRaceCard.propTypes = {
+  data: PropTypes.array.isRequired,
+  className: PropTypes.string
 };
 
 export default NextRaceCard

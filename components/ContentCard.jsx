@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 	},
 	cardName: {
 		flexGrow: 1,
-		flexShrink: 0,
 		marginRight: theme.spacing(2)
 	},
 	cardCaption :{
