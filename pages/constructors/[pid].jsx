@@ -115,7 +115,7 @@ const ConstructorPage = ({
 		<>
 			<Head title={constructorInfo.name} />
 			<TeamColorBar team={constructorInfo.name}>
-				<Typography variant="h2" gutterBottom>
+				<Typography variant="h2" component="h1" gutterBottom>
 					{constructorInfo.name}
 				</Typography>
 			</TeamColorBar>

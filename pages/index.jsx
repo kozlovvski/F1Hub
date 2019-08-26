@@ -1,4 +1,4 @@
-import { makeStyles, Hidden } from "@material-ui/core";
+import { makeStyles, Hidden, Typography } from "@material-ui/core";
 
 import Head from "components/Head";
 import DriversStandingsTable from "components/DriversStandingsTable";
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 		[theme.breakpoints.up("md")]: {
 			gridTemplateColumns: "minmax(auto, 1fr) 1fr 1fr",
 			gridTemplateRows: "1fr 1fr 1fr",
-			height: "calc(100vh - 190px)"
+			height: "calc(100vh - 170px)"
 		},
 	},
 	nextRace: {

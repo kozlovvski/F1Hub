@@ -71,7 +71,8 @@ const useStyles = makeStyles(theme => ({
   footer: {
     marginTop: "auto",
     [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(3)
+      padding: theme.spacing(3),
+      paddingTop: 0
     },
     padding: theme.spacing(2)
   }
@@ -138,7 +139,7 @@ const Layout = props => {
               </Hidden>
               <Typography
                 variant="h6"
-                component="h1"
+                component="p"
                 className={classes.pageTitle}
               >
                 {props.name}

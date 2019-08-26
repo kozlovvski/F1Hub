@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 const ContentCard = ({ name, caption, loading, children, height, padding, className }) => {
 	const classes = useStyles();
 	return (
-		<Paper className={className ? `${classes.fluidContainer} ${className}` : classes.fluidContainer} style={{minHeight: 200}}>
+		<Paper className={className ? `${classes.fluidContainer} ${className}` : classes.fluidContainer} style={{minHeight: 100}}>
 			<Toolbar className={classes.cardHeader}>
 				<Typography variant="h6" component="h3" className={classes.cardName}>
 					{name}

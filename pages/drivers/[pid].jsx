@@ -200,7 +200,7 @@ const DriverPage = props => {
 	return (
 		<>
 			<Head title={`${driverInfo.givenName} ${driverInfo.familyName}`} />
-			<Typography variant="h2" gutterBottom>{`${driverInfo.givenName} ${
+			<Typography variant="h2" component="h1" gutterBottom>{`${driverInfo.givenName} ${
 				driverInfo.familyName
 			}`}</Typography>
 			<Grid container spacing={3} style={{ minHeight: 200 }}>
