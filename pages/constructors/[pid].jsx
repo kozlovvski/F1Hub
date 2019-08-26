@@ -1,6 +1,6 @@
 import Head from "components/Head";
 
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, List, ListItem } from "@material-ui/core";
 import { useState, useEffect } from "react";
 
 import getWikiDefaultImage from "util/getWikiDefaultImage";
@@ -9,6 +9,7 @@ import getConstructorInfo from "util/getConstructorInfo";
 import getSeasonsForConstructor from "util/getSeasonsForConstructor";
 import getRacesResultsForConstructor from "util/getRacesResultsForConstructor";
 import getQualifyingResultsForConstructor from "util/getQualifyingResultsForConstructor";
+import getCurrentDriversForConstructor from "util/getCurrentDriversForConstructor";
 
 import BioCard from "components/BioCard";
 import TeamColorBar from "components/TeamColorBar";
@@ -20,9 +21,10 @@ import ContentCard from "components/ContentCard";
 
 const ConstructorPage = ({
 	constructorInfo,
+	currentDrivers,
 	wikiImage,
 	wikiIntro,
-	seasonsList
+	seasonsList,
 }) => {
 	const [selectedSeason, setSelectedSeason] = useState(seasonsList[0].season);
 	const [racesResults, setRacesResults] = useState([]);
@@ -62,10 +64,29 @@ const ConstructorPage = ({
 			name="Constructor Info"
 			image={wikiImage}
 			alt={constructorInfo.name}
-			url={constructorInfo.url}
-		>
+			url={constructorInfo.url}>
 			{wikiIntro}
 		</BioCard>
+	);
+
+	const CurrentDrivers = () => (
+		<ContentCard loading={loading} name="Current drivers" padding>
+			<List disablePadding>
+				{currentDrivers.length ? (
+					currentDrivers.map(row => (
+						<ListItem disableGutters key={row.driverId}>
+							<TeamColorBar team={constructorInfo.name}>
+								<Typography variant="body1">{`${row.givenName} ${row.familyName}`}</Typography>
+							</TeamColorBar>
+						</ListItem>
+					))
+				) : (
+					<Typography variant="caption">
+						This constructor doesn't compete in current season.
+					</Typography>
+				)}
+			</List>
+		</ContentCard>
 	);
 
 	const ConstructorSeasonsList = () => (
@@ -103,7 +124,7 @@ const ConstructorPage = ({
 					<ConstructorBio />
 				</Grid>
 				<Grid item xs={12} sm={6} md={3}>
-					placeholder
+					<CurrentDrivers />
 				</Grid>
 				<Grid item xs={12} sm={6} md={3}>
 					<ConstructorSeasonsList />
@@ -133,8 +154,11 @@ ConstructorPage.getInitialProps = async ({ query }) => {
 		name: "Constructor overview",
 		constructorInfo,
 		seasonsList: await getSeasonsForConstructor(constructorInfo.constructorId),
+		currentDrivers: await getCurrentDriversForConstructor(
+			constructorInfo.constructorId
+		),
 		wikiImage: await getWikiDefaultImage(constructorInfo.url),
-		wikiIntro: await getWikiIntro(constructorInfo.url)
+		wikiIntro: await getWikiIntro(constructorInfo.url),
 	};
 };
 

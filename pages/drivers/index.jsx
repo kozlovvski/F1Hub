@@ -11,10 +11,11 @@ import {
 
 import Head from "components/Head";
 import CollapseWithButton from "components/CollapseWithButton";
-import DriversStandings from "components/DriversStandings";
+import DriversStandingsTable from "components/DriversStandingsTable";
 import TeamColorBar from "components/TeamColorBar";
 import SeasonsSelect from "components/SeasonsSelect";
 import CenteredLoader from "components/CenteredLoader";
+import ContentCard from "components/ContentCard";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -40,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 		gridGap: theme.spacing(3),
 		paddingTop: theme.spacing(2)
 	},
-	driversStandings: {
+	standings: {
 		[theme.breakpoints.up("xs")]: {
 			gridRow: "3 / 4"
 		},
@@ -117,6 +118,24 @@ const Drivers = props => {
 		setLoading(false);
 	};
 
+	const DriverStandings = () => (
+		<ContentCard
+			className={classes.standings}
+			loading={loading}
+			name="Standings"
+			caption={`after round\u00A0${data.round}`}>
+
+			<Hidden mdUp>
+				<CollapseWithButton height="200px">
+					<DriversStandingsTable data={data} />
+				</CollapseWithButton>
+			</Hidden>
+			<Hidden smDown>
+				<DriversStandingsTable data={data} />
+			</Hidden>
+		</ContentCard>
+	);
+
 	return loading ? (
 		<CenteredLoader />
 	) : (
@@ -130,16 +149,7 @@ const Drivers = props => {
 				seasonsList={seasons}
 			/>
 			<div className={classes.container}>
-				<Paper className={classes.driversStandings}>
-					<Hidden mdUp>
-						<CollapseWithButton height="200px">
-							<DriversStandings data={data} />
-						</CollapseWithButton>
-					</Hidden>
-					<Hidden smDown>
-						<DriversStandings data={data} />
-					</Hidden>
-				</Paper>
+				<DriverStandings />
 				{data.DriverStandings.map(row => (
 					<DriverCard data={row} key={row.Driver.driverId} />
 				))}
