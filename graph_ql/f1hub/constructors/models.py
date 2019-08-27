@@ -6,6 +6,4 @@ class Constructor(models.Model):
     constructorRef = models.TextField()
     name = models.TextField()
     nationality = models.TextField()
-    url = models.URLField()
-    
-    objects = models.Manager()
+    url = models.TextField()

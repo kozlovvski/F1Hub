@@ -10,6 +10,3 @@ class Race(models.Model):
     date = models.TextField()
     time = models.TextField(null=True)
     url = models.TextField()
-
-
-    objects = models.Manager()

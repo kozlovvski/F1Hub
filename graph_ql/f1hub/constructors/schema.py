@@ -1,7 +1,5 @@
 import graphene
 from graphene_django import DjangoObjectType
-from django.db.models import Q
-
 
 from .models import Constructor
 
@@ -16,9 +14,5 @@ class Query(graphene.ObjectType):
 
     def resolve_constructors(self, info, name=None, **kwargs):
         if name:
-            filter = (
-                Q(name__iexact=name)
-            )
-            return Constructor.objects.filter(filter)
-
+            return Constructor.objects.filter(constructorRef=name)
         return Constructor.objects.all()

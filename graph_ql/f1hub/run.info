@@ -1,0 +1,1 @@
+/opt/UGENE/ugenecl --task=data:cmdline/align.uwl --log-no-task-progress --ugene-output-progress-state --ugene-output-error --ini-file="/home/haelmorn/.config/Unipro/UGENE.ini" --mode=0 --max-iterations=8 --stable=1 --in=/tmp/p21078.fasta --out=/tmp/V21078.fasta --format=fasta --log-level-details

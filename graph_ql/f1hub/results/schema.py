@@ -1,18 +1,24 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from .models import Results
+from .models import Result
 
 
-class ResultsType(DjangoObjectType):
+class ResultType(DjangoObjectType):
     class Meta:
-        model = Results
+        model = Result
 
 
 class Query(graphene.ObjectType):
-    results = graphene.List(ResultsType, driver=graphene.String())
+    results = graphene.List(ResultType, raceId=graphene.Int(), constructor=graphene.String(), year=graphene.Int())
 
-    def resolve_results(self, info,driver=None, **kwargs):
-        if driver:
-            return Results.objects.filter(driver_id=driver)
-        return Results.objects.all()
+    def resolve_results(self, info, raceId=None, constructor=None, year=None, **kwargs):
+        data = Result.objects.all()
+        if year and constructor:
+            return data.filter(raceId_id__year=year).filter(constructorId_id__constructorRef=constructor)[:2]
+        if raceId:
+            return data.filter(raceId=raceId)       
+        if constructor:
+            return data.filter(constructorId_id__constructorRef=constructor)
+        if year:
+            return data.filter(raceId_id__year=year)
