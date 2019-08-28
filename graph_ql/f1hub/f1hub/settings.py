@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'results',
     'constructors',
     'races',
+    'status',
+    'circuits',
 ]
 
 MIDDLEWARE = [

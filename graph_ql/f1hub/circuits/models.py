@@ -7,8 +7,6 @@ class Circuit(models.Model):
     name = models.TextField()
     location = models.TextField()
     country = models.TextField()
-    lat = models.TextField()
-    lng = models.TextField()
+    lat = models.FloatField()
+    lng = models.FloatField()
     url = models.TextField()
-
-    objects = models.Manager()
