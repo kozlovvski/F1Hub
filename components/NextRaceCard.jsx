@@ -38,7 +38,7 @@ const NextRaceCard = ({data, className}) => {
   const localRaceDate = new Date(data.date + "T" + data.time)
 
   return (
-    <Paper className={`${classes.container} ${className}`} style={{backgroundImage: `url(/static/images/circuits/${data.Circuit.circuitId}.jpg)`}}>
+    <Paper className={`${classes.container} ${className}`} style={{backgroundImage: `url(/static/images/circuits/spa.jpg)`}}>
       <Toolbar className={classes.cardHeader}>
 					<Typography variant="h6" component="h3" className={classes.cardName}>
 						Next race:
