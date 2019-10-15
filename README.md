@@ -11,6 +11,7 @@ Live demo: https://f1-hub.kozlovvski.now.sh
 * Expand [constructor colors database](https://github.com/kozlovvski/F1Hub/blob/master/util/getConstructorColor.js)
 * Expand [circuit images directory](https://github.com/kozlovvski/F1Hub/tree/master/static/images/circuits)
 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
