@@ -1,5 +1,7 @@
 {
-  "name": "create-next-example-app",
+  "name": "f1-hub",
+  "description": "Formula 1 portal making checking historic F1 data easy",
+  "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
