@@ -2,25 +2,32 @@
   "name": "f1-hub",
   "description": "Formula 1 portal making checking historic F1 data easy",
   "version": "1.0.0",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
+  "author": "Michał Kozłowski <michal@kozlovv.ski>",
   "dependencies": {
-    "@material-ui/core": "^4.3.1",
-    "@material-ui/icons": "^4.2.1",
-    "@types/node": "^12.12.6",
-    "@types/react": "^16.9.11",
-    "cookie": "^0.4.0",
-    "isomorphic-unfetch": "^3.0.0",
-    "js-cookie": "^2.2.1",
-    "lscache": "^1.3.0",
-    "mdi-material-ui": "^6.3.0",
-    "next": "^9.0.2",
-    "nprogress": "^0.2.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "typescript": "^3.7.2"
+    "gatsby": "^2.17.11",
+    "gatsby-image": "^2.2.31",
+    "gatsby-plugin-manifest": "^2.2.27",
+    "gatsby-plugin-offline": "^3.0.19",
+    "gatsby-plugin-react-helmet": "^3.1.14",
+    "gatsby-plugin-sharp": "^2.2.37",
+    "gatsby-plugin-typescript": "^2.1.19",
+    "gatsby-source-filesystem": "^2.1.36",
+    "gatsby-transformer-sharp": "^2.3.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-helmet": "^5.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
   }
 }
