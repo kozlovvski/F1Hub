@@ -1,0 +1,8 @@
+.DS_Store
+
+/public
+/node_modules
+/tmp
+/dist
+
+*.log
