@@ -1,5 +1,5 @@
 export const BASE_URLS = {
-  ergast: 'https://ergast.com/api/f1/'
+  ergast: 'localhost:8000/api/f1/'
 };
 
 export const CACHE_TIMES = {
