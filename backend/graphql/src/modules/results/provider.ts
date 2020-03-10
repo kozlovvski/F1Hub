@@ -69,8 +69,7 @@ export class ResultsProvider extends ErgastDataSource {
   }
 
   // MARK: result parsing
-  private parseRace = (result: any) =>
-    result.MRData.RaceTable?.Races[0] || {}
+  private parseRace = (result: any) => result.MRData.RaceTable?.Races[0] || {};
 
   private parseRaceTable = (result: any) =>
     result.MRData.RaceTable?.Races[0].Results || [];

@@ -4,8 +4,8 @@ COPY package.json package-lock.json ./
 
 RUN npm ci --prod
 
-RUN npm install -g ts-node typescript
-
 COPY . .
+
+RUN npm run build
 
 ENTRYPOINT npm run start
