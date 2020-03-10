@@ -1,4 +1,4 @@
-version: "3"
+version: "2.1"
 services:
   ergastdb:
     container_name: ergastdb
@@ -8,6 +8,7 @@ services:
       MYSQL_DATABASE: ergastdb
     expose:
       - "3306"
+    mem_limit: 300m
   web:
     build: ./lamp
     container_name: ergastweb
@@ -17,7 +18,11 @@ services:
       - ./webroot:/var/www/html
       - ./php/api:/php/api
       - ./logs:/var/log/apache2
+    mem_limit: 300m
   apollo:
     build: ./graphql
     ports:
       - "8001:4000"
+    mem_limit: 300m
+    mem_swappiness: 30
+    memswap_limit: -1
