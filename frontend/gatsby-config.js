@@ -1,34 +1,32 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: 'F1Hub',
+    description: 'F1 portal displaying historical F1 data back to 1950',
+    keywords: 'f1, formula1, formula 1, motorsport, motosport',
+    author: {
+      name: 'Michał Kozłowski',
+      url: 'https://www.github.com/kozlovvski',
+      email: 'michal@kozlovv.ski'
+    }
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        siteUrl: 'https://f1hub.kozlovv.ski'
+      }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-plugin-sass',
+    'gatsby-plugin-typescript',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-plugin-sharp`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 75
+      }
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
-  ],
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-react-helmet'
+  ]
 }

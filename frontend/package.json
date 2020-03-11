@@ -1,44 +1,53 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "dependencies": {
-    "gatsby": "^2.19.7",
-    "gatsby-image": "^2.2.39",
-    "gatsby-plugin-manifest": "^2.2.39",
-    "gatsby-plugin-offline": "^3.0.32",
-    "gatsby-plugin-react-helmet": "^3.1.21",
-    "gatsby-plugin-sharp": "^2.4.3",
-    "gatsby-source-filesystem": "^2.1.46",
-    "gatsby-transformer-sharp": "^2.3.13",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
-  },
-  "devDependencies": {
-    "prettier": "^1.19.1"
-  },
+  "name": "f1-hub",
+  "description": "F1 portal displaying historical F1 data back to 1950.",
+  "version": "0.3.0",
+  "author": "Michał Kozłowski <michal@kozlovv.ski>",
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "dev": "gatsby develop",
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "test": "npm run type-check && npm run lint",
+    "type-check": "tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  "engines": {
+    "node": ">=8.0.0"
   },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "dependencies": {
+    "antd": "^4.0.2",
+    "gatsby": "^2.10.0",
+    "gatsby-image": "^2.2.1",
+    "gatsby-plugin-canonical-urls": "^2.1.0",
+    "gatsby-plugin-react-helmet": "^3.1.0",
+    "gatsby-plugin-sass": "^2.1.30",
+    "gatsby-plugin-sharp": "^2.2.1",
+    "gatsby-plugin-typescript": "^2.1.0",
+    "gatsby-source-filesystem": "^2.1.0",
+    "gatsby-transformer-sharp": "^2.2.0",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.13.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "typescript": "^3.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.10",
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-helmet": "^5.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "eslint-config-blvd": "^1.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   }
 }
