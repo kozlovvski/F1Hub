@@ -19,6 +19,22 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-typescript',
     {
+      resolve: 'gatsby-plugin-less',
+      options: {
+        javascriptEnabled: true,
+        modifyVars: {
+          'primary-color': '#d00'
+        }
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-antd',
+      options: {
+        style: true
+      }
+    },
+
+    {
       resolve: `gatsby-plugin-sharp`,
       options: {
         useMozJpeg: false,
